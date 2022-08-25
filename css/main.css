@@ -207,8 +207,7 @@ table ol {
 .paper {
   margin-left: 20px;
   margin-bottom: 20px;
-  line-height: 1.4; 
-  font-size: 90%;
+  line-height: 1.5; 
 }
 
 .paper p {
@@ -297,7 +296,7 @@ table ol {
 #label-preprint {
 	background:    #CC0000;
 	border-radius: 5px;
-	padding: 			 1px 10px;
+	padding: 	   2px 10px;
 	height:        18px;
 	color:         #ffffff;
 	display:       inline-block;
@@ -308,7 +307,7 @@ table ol {
 #label-code {
 	background:    #ED7D31;
 	border-radius: 5px;
-	padding: 			 1px 10px;
+	padding: 	   2px 10px;
 	height:        18px;
 	color:         #ffffff;
 	display:       inline-block;
@@ -319,7 +318,7 @@ table ol {
 #label-talk {
 	background:    #2E75B6;
 	border-radius: 5px;
-	padding: 			 1px 10px;
+	padding: 	   2px 10px;
 	height:        18px;
 	color:         #ffffff;
 	display:       inline-block;
@@ -330,7 +329,7 @@ table ol {
 #label-misc{
 	background:    #666666;
 	border-radius: 5px;
-	padding: 	   1px 10px;
+	padding: 	   2px 10px;
 	height:        18px;
 	color:         #ffffff;
 	display:       inline-block;
