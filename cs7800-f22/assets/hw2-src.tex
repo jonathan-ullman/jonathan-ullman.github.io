@@ -1,0 +1,227 @@
+\documentclass[11pt]{article}
+
+% set this flag to 0 to remove comments
+\def\comments{1}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bbm}
+\usepackage{paralist}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{authblk}
+	\renewcommand{\Authsep}{\qquad}
+	\renewcommand{\Authand}{\qquad}
+	\renewcommand{\Authands}{\qquad}
+	\renewcommand\Affilfont{\itshape\small}
+\usepackage[left=1.25in,right=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\usepackage[bookmarks=false]{hyperref}
+    \hypersetup{
+        linktocpage=true,
+        colorlinks=true,				
+        linkcolor=DarkBlue,				
+        citecolor=DarkBlue,				
+        urlcolor=DarkBlue,			
+    }
+\usepackage[tt=false]{libertine}
+    \usepackage[libertine]{newtxmath}
+    \usepackage[T1]{fontenc}
+    \renewcommand{\baselinestretch}{1.00}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{nicefrac}
+\usepackage{tikz}
+	\usetikzlibrary{positioning}
+	\definecolor{DarkGreen}{rgb}{0.2,0.6,0.2}
+	\definecolor{DarkRed}{rgb}{0.6,0.2,0.2}
+	\definecolor{DarkBlue}{rgb}{0.2,0.2,0.6}
+	\definecolor{DarkPurple}{rgb}{0.4,0.2,0.4}   
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{framed}
+% \usepackage{ulem}
+% \normalem
+
+   
+% comments
+\setlength\marginparwidth{62pt}
+\setlength\marginparsep{5pt}
+\ifnum\comments=1
+    \newcommand{\mynote}[2]{{\marginpar{\color{#1}\sf \tiny #2}}}
+    \newcommand{\mynoteinline}[2]{{\color{#1} \sf \small #2}}
+\else
+\newcommand{\mynote}[2]{}
+    \newcommand{\mynoteinline}[2]{}
+\fi
+\newcommand{\jnote}[1]{\mynote{blue}{JU: #1}}
+\newcommand{\as}[1]{\mynote{red}{ADS: #1}}
+\newcommand{\anote}{\as}
+\newcommand{\asinline}[1]{\mynoteinline{red}{ADS: #1}}
+
+\renewcommand{\epsilon}{\eps}
+
+% fixing left-right spacing
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+% math macros
+\newcommand{\ex}[2]{{\ifx&#1& \mathbb{E} \else \underset{#1}{\mathbb{E}} \fi \left(#2\right)}}
+\newcommand{\pr}[2]{{\operatorname*{\mathbb{P}}_{#1} \paren{#2}}}
+\newcommand{\var}[2]{{\ifx&#1& \mathrm{Var} \else \underset{#1}{\mathrm{Var}} \fi \left(#2\right)}}
+
+\newcommand{\mypar}[1]{\medskip\textbf{#1}}
+
+\newcommand{\from}{:}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\polylog}{\mathrm{polylog}}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\ind}{\mathbb{I}}
+\newcommand{\pmo}{\{\pm 1\}}
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\bit}[1]{{\zo^{#1}}}
+\newcommand{\cond}[1]{\vert_{#1}}
+\newcommand{\norm}[2]{\|#1\|_{#2}}
+\newcommand{\abs}[1]{{\left | {#1} \right|}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nicehalf}{\nicefrac{1}{2}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\cardset}[1]{\left| \set{#1} \right|}
+\newcommand{\paren}[1]{{\left ( {#1} \right)}}
+\newcommand{\bparen}[1]{{\big( {#1} \big)}}
+\newcommand{\Bparen}[1]{{\Big( {#1} \Big)}}
+\newcommand{\bracket}[1]{{\left [ {#1} \right]}}
+\newcommand{\ip}[1]{{\left \langle {#1} \right\rangle }}
+
+\newcommand{\distance}{\mathrm{d}}
+\newcommand{\dtv}{\distance_{\mathrm{TV}}}
+\newcommand{\dkl}{\distance_{\mathrm{KL}}}
+\newcommand{\dhe}{\distance_{\mathrm{H^2}}}
+\newcommand{\dcs}{\distance_{\mathrm{\chi^2}}}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\defeq}{\stackrel{{\mbox{\tiny def}}}{=}}
+
+\newtheorem{thm}{Theorem}
+    \newtheorem{clm}[thm]{Claim}
+    \newtheorem{lem}[thm]{Lemma}
+    \newtheorem{prop}[thm]{Proposition}
+    \newtheorem{cor}[thm]{Corollary}
+    \newtheorem{fact}[thm]{Fact}
+    \newtheorem{claim}[thm]{Claim}
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+    \newtheorem{example}[thm]{Example}
+    \newtheorem{rem}[thm]{Remark}
+    \newtheorem{exer}[thm]{Exercise}
+
+\newcommand{\HWtitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS4810 / CS7800: Advanced Algorithms \hfill Fall 2022} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1: Due {#2}} \\[1em] {\bfseries \large Mahsa Derakhshan and Jonathan Ullman}\\[1ex] \end{figure}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%  Title  %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\HWtitle{2}{Friday, September 30, 2022}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Beginning  %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{collab-policy}
+\medskip
+
+\renewcommand{\labelenumii}{{\bfseries \em \arabic{enumi}.\arabic{enumii}}}
+\newcommand{\problemitem}{\renewcommand{\labelenumi}{{\bfseries \em Problem \arabic{enumi}}}\item}
+\newcommand{\solutionitem}{\renewcommand{\labelenumi}{{\bfseries \em Solution \arabic{enumi}}}\addtocounter{enumi}{-1}\item}
+
+\paragraph{Assigned Problems}
+\begin{enumerate}[leftmargin=0pt, itemsep=3ex]
+\problemitem 
+Show that there are instances of the stable matching problem with exponentially many distinct stable matchings.  Specifically, for every $n$, construct preferences for $n$ hospitals and $n$ doctors/residents and argue that the number of distinct stable matchings for these preferences is $\Omega(b^n)$ for some constant $b > 1$.\footnote{A construction that achieves any $b > 1$ will receive full credit, but if you'd like to challenge yourself, try to make $b$ as large as possible, or show that there cannot be more than $O(c^n)$ stable matchings for some constant $c <  \infty$.}
+
+\medskip
+\emph{The next three questions ask you to design greedy algorithms.  For each question, include:     
+    \begin{itemize}[nosep]
+        \item A clear pseudocode description of your algorithm.
+        \item A proof of its correctness.  Your proof doesn't need to be overly formal---just clear and convincing.
+        \item An analysis of its asymptotic (``big $O$'') running time.
+    \end{itemize}
+}
+  
+\problemitem Your local school is planning its annual bake sale to raise funds and needs parents to help staff the event.  The event runs from time $0$ to time $T$.  The parents were surveyed, and each of $n$ parents provided one specific time window where they can volunteer, with parent $i$ volunteering for the window of $s_i$ until $f_i$.  Since each parent will eat something from the table as compensation, you'd like to use the smallest number of different parents to staff the event.  Specifically, find the smallest set $S \subseteq \{1,2,\dots,n\}$ so that
+$
+\bigcup_{i \in S} [s_i, f_i] \supseteq [0,T].
+$
+Design a greedy algorithm that solves this problem.  For simplicity, you may assume that all the values $s_i$ and $f_i$ are distinct, and that it is possible to staff the entire event from time $0$ to time $T$.  For full credit your algorithm should run in time $O(n \log n)$, but slower algorithms will receive significant partial credit.
+
+\problemitem Rita and Gwen live on a straight road with $n$ tall dorms, with dorm $i$ located at the point $p_i$ on the street.  For snowy weather, the school has decided to build bridges that go directly between pairs of dorms.  Building a bridge between $i$ and $j$ has a cost of $|p_i - p_j|$ proportional to their distance, so they would like to build the cheapest possible set of bridges that makes it possible to go from any dorm $i$ to any other dorm $j$.  However, due to some incidents at parties, Rita is not allowed to go into certain dorms, and Gwen is not allowed to go into certain other dorms, and we need to ensure that both Rita and Gwen can get around without going into these dorms.  Each dorm is labeled 
+\textbf{R} (meaning \textbf{R}ita can enter), \textbf{G} (meaning \textbf{G}wen can enter), or \textbf{B} (meaning \textbf{B}oth can enter), and we need to build enough bridges so that Rita can get between any pair of dorms labeled \textbf{R} or \textbf{B} without entering any dorm labeled $\textbf{G}$, and the analogous condition for Gwen.  We'd of course like to build the cheapest set of bridges possible.  For example, given the input below one (not necessarily optimal) solution is to build four bridges with a total cost of $2 + 3 + 5 + 6 = 16$ and Rita can go between any of the \textbf{B/R} nodes and Gwen can get between any of the \textbf{B/G} nodes.
+
+\begin{figure}[h!]\begin{center}
+    \begin{tikzpicture}[node distance = 1.0cm and 2.5cm, on grid, thick, state/.style = {circle, top color = white, bottom color = blue!20, draw, black, text = black, minimum width = .3cm}]
+        \node[state] (a) {B};
+        \node[yshift=-18pt] at (a) {$p_1 = 0$};
+        \node[state] (b) [right =of a, xshift=0pt] {R};
+        \node[yshift=-18pt] at (b) {$p_2 = 2$};
+        \node[state] (c) [right =of b, xshift=+30pt] {G};
+        \node[yshift=-18pt] at (c) {$p_3 = 5$};
+        \node[state] (d) [right =of c, xshift=+10pt] {B};
+        \node[yshift=-18pt] at (d) {$p_4 = 8$};
+        \tikzset{every node/.style = {fill = white}} 
+        \path 	(a) edge [] node {2} (b)
+                (a) edge [bend right=35] node {5} (c)
+                (b) edge [bend left=30] node {6} (d)
+                (c) edge [] node {3}     (d);
+    \end{tikzpicture}
+\end{center}\end{figure} \vspace{-10pt}
+
+Design a greedy algorithm that solves this problem in $O(n\log n)$ time.\footnote{\textbf{Hint:} Start by considering what you would do for small examples where the first and last dorm on the street are B and everything in the middle is G or R.}
+
+\problemitem As city mayor, you have received complaints about a lack of public spaces in your city. You thus decide on closing-off some of the roads in your city's road network and converting them into public outdoor dining areas. You need to ensure that the road network remains connected, but you don't see why there needs to be more than one route to drive anywhere, and so you decide to eliminate enough roads so that the resulting network is acyclic.  However, converting roads into outdoor dining areas is expensive, so you'd like to find the cheapest set of roads to eliminate.  More specifically, you are given an undirected, connected graph $G = (V,E)$ that represents the road network with $n$ vertices and $m$ edges.  Each road/edge $e \in E$ has a cost $w_e$ for converting it to a dining area. You want to find the cheapest subset of edges $S \subseteq E$ such that the graph $G = (V, E \setminus S)$ is connected and acyclic. Design a greedy algorithm that solves this problem.  For full credit your algorithm should run in time $O(m \log n)$ or better, but slower algorithms will receive significant partial credit.\footnote{\textbf{Hint:} How is this problem related to minimum spanning tree?}
+   
+\end{enumerate}
+\end{document}
