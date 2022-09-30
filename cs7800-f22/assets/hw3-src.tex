@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+
+% set this flag to 0 to remove comments
+\def\comments{1}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bbm}
+\usepackage{paralist}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{authblk}
+	\renewcommand{\Authsep}{\qquad}
+	\renewcommand{\Authand}{\qquad}
+	\renewcommand{\Authands}{\qquad}
+	\renewcommand\Affilfont{\itshape\small}
+\usepackage[left=1.25in,right=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\usepackage[bookmarks=false]{hyperref}
+    \hypersetup{
+        linktocpage=true,
+        colorlinks=true,				
+        linkcolor=DarkBlue,				
+        citecolor=DarkBlue,				
+        urlcolor=DarkBlue,			
+    }
+\usepackage[tt=false]{libertine}
+    \usepackage[libertine]{newtxmath}
+    \usepackage[T1]{fontenc}
+    \renewcommand{\baselinestretch}{1.00}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{nicefrac}
+\usepackage{tikz}
+	\usetikzlibrary{positioning}
+	\definecolor{DarkGreen}{rgb}{0.2,0.6,0.2}
+	\definecolor{DarkRed}{rgb}{0.6,0.2,0.2}
+	\definecolor{DarkBlue}{rgb}{0.2,0.2,0.6}
+	\definecolor{DarkPurple}{rgb}{0.4,0.2,0.4}   
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{framed}
+% \usepackage{ulem}
+% \normalem
+
+   
+% comments
+\setlength\marginparwidth{62pt}
+\setlength\marginparsep{5pt}
+\ifnum\comments=1
+    \newcommand{\mynote}[2]{{\marginpar{\color{#1}\sf \tiny #2}}}
+    \newcommand{\mynoteinline}[2]{{\color{#1} \sf \small #2}}
+\else
+\newcommand{\mynote}[2]{}
+    \newcommand{\mynoteinline}[2]{}
+\fi
+\newcommand{\jnote}[1]{\mynote{blue}{JU: #1}}
+\newcommand{\as}[1]{\mynote{red}{ADS: #1}}
+\newcommand{\anote}{\as}
+\newcommand{\asinline}[1]{\mynoteinline{red}{ADS: #1}}
+
+\renewcommand{\epsilon}{\eps}
+
+% fixing left-right spacing
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+% math macros
+\newcommand{\ex}[2]{{\ifx&#1& \mathbb{E} \else \underset{#1}{\mathbb{E}} \fi \left(#2\right)}}
+\newcommand{\pr}[2]{{\operatorname*{\mathbb{P}}_{#1} \paren{#2}}}
+\newcommand{\var}[2]{{\ifx&#1& \mathrm{Var} \else \underset{#1}{\mathrm{Var}} \fi \left(#2\right)}}
+
+\newcommand{\mypar}[1]{\medskip\textbf{#1}}
+
+\newcommand{\from}{:}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\polylog}{\mathrm{polylog}}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\ind}{\mathbb{I}}
+\newcommand{\pmo}{\{\pm 1\}}
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\bit}[1]{{\zo^{#1}}}
+\newcommand{\cond}[1]{\vert_{#1}}
+\newcommand{\norm}[2]{\|#1\|_{#2}}
+\newcommand{\abs}[1]{{\left | {#1} \right|}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nicehalf}{\nicefrac{1}{2}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\cardset}[1]{\left| \set{#1} \right|}
+\newcommand{\paren}[1]{{\left ( {#1} \right)}}
+\newcommand{\bparen}[1]{{\big( {#1} \big)}}
+\newcommand{\Bparen}[1]{{\Big( {#1} \Big)}}
+\newcommand{\bracket}[1]{{\left [ {#1} \right]}}
+\newcommand{\ip}[1]{{\left \langle {#1} \right\rangle }}
+
+\newcommand{\distance}{\mathrm{d}}
+\newcommand{\dtv}{\distance_{\mathrm{TV}}}
+\newcommand{\dkl}{\distance_{\mathrm{KL}}}
+\newcommand{\dhe}{\distance_{\mathrm{H^2}}}
+\newcommand{\dcs}{\distance_{\mathrm{\chi^2}}}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\defeq}{\stackrel{{\mbox{\tiny def}}}{=}}
+
+\newtheorem{thm}{Theorem}
+    \newtheorem{clm}[thm]{Claim}
+    \newtheorem{lem}[thm]{Lemma}
+    \newtheorem{prop}[thm]{Proposition}
+    \newtheorem{cor}[thm]{Corollary}
+    \newtheorem{fact}[thm]{Fact}
+    \newtheorem{claim}[thm]{Claim}
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+    \newtheorem{example}[thm]{Example}
+    \newtheorem{rem}[thm]{Remark}
+    \newtheorem{exer}[thm]{Exercise}
+
+\newcommand{\HWtitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS4810 / CS7800: Advanced Algorithms \hfill Fall 2022} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1: Due {#2}} \\[1em] {\bfseries \large Mahsa Derakhshan and Jonathan Ullman}\\[1ex] \end{figure}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%  Title  %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\HWtitle{3}{Friday, October 14, 2022}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Beginning  %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\textbf{Collaboration and Honesty Policy Reminder.}
+Collaboration in the form of discussion is allowed and encouraged. However, all forms of cheating are not allowed and will be penalized harshly.  These include, but are not limited to, copying parts of an assignment from a classmate, finding answers to problems on the internet or from anyone not enrolled in the class, and plagiarizing from research papers or old posted solutions.  A rule of thumb is that you should be able to walk away from discussing a homework problem with no notes and write your solution on your own.
+
+\begin{itemize}[itemsep=1pt]
+	\item You must write up all solutions by yourself, and may not share any written solutions, even if you collaborate with others to solve the problem.
+	
+	\item You must identify all your collaborators. If you did not collaborate, write ``no collaborators" or something to that effect. You may have a maximum of two collaborators per assignment, and collaboration is transitive (if you list a collaborator they must list you).
+	
+	\item Asking and answering questions in class forums (lectures, office hours, Piazza) is allowed and encouraged, and you do not need to list these interactions as collaborators.
+	
+	\item Seeking out alternative sources (e.g.\ classmates, textbooks, the internet) for general concepts you need (e.g.\ greedy algorithms, probability) is allowed and encouraged.
+\end{itemize}
+\medskip
+
+\renewcommand{\labelenumii}{{\bfseries \em \arabic{enumi}.\arabic{enumii}}}
+\newcommand{\problemitem}{\renewcommand{\labelenumi}{{\bfseries \em Problem \arabic{enumi}}}\item}
+\newcommand{\solutionitem}{\renewcommand{\labelenumi}{{\bfseries \em Solution \arabic{enumi}}}\addtocounter{enumi}{-1}\item}
+
+\paragraph{Assigned Problems} \phantom{.}
+
+\medskip
+\noindent\emph{The next two questions ask for dynamic programming algorithms.  For each question, include:     
+	\begin{itemize}[nosep]
+		\item A description of the subproblems your algorithm will solve (e.g. ``Let $\textsc{Opt}(i)$ be the optimal...").
+		\item A recurrence relating those subproblems and a justification for its correctness.
+		\item A pseudocode description of your algorithm for finding the optimal solution.
+		\item An analysis of your algorithm's running time.
+	\end{itemize}
+}	
+
+\begin{enumerate}[leftmargin=0pt, itemsep=3ex]
+	
+\problemitem
+You are the head pastry chef for the coronation of King Charles III and you are given instructions to prepare $n$ desserts and a team of $m$ pastry chefs to assign to work on the different desserts.  All of the chefs are equally competent, but each chef can work on only one dessert, and you have to decide how many chefs to assign to each dessert to make the most delicious feast possible.
+
+After some careful thought, you have figured out how delicious dessert $i$ will be if $j$ 
+chefs are assigned to it, and you quantify this with a deliciousness value $a_{i,j} \geq 0$.  You may assume that more chefs will make a dessert more delicious, so $a_{i,j+1} \geq a_{i,j}$ for every $i$ and $j$.  You may also assume that the dessert can't be made without at least one chef, so $a_{i,0} = 0$ for every $i$.
+
+Design a dynamic programming algorithm to determine how many chefs to assign to each dessert so that the sum of the deliciousness values is maximized.
+\newpage
+
+\problemitem
+Alice and Bob play the following game.  There is a row of $n$ tiles with values $x_1,\dots,x_n$ written on them.  Starting with Alice, Alice and Bob take turns removing either the first or last tile in the row and placing it in their pile until there are no tiles remaining.  For example, if Alice takes tile $1$, Bob can take either tile $2$ or tile $n$ on the next turn.  At the end of the game, each player receives a number of points equal to the sum of the values of their tiles minus that of the other player's tiles.  Specifically, if Alice takes tiles $A \subseteq \{1,\dots,n\}$ and Bob takes tiles $B = \{1,\dots,n\} \setminus A$, then their scores are, respectively,
+$$
+\underbrace{\sum_{i \in A} x_i}_{\text{Alice}} \quad \textrm{and} \quad \underbrace{\sum_{i \in B} x_i}_{\text{Bob}}
+$$
+
+For example, if the tiles are $10, 2, 8$ then taking the first tile guarantees Alice a score of at least $10 + 2 = 12$, whereas taking the last tile would only guarantee Alice a score of at least $8 + 2 = 10$.
+
+Design an algorithm to determine the maximum score that Alice can guarantee for herself, assuming Bob plays optimally to maximize his score.\footnote{\textbf{Hint:} Note that the sum of their scores is always equal to the same value, $\sum_{i=1}^{n} x_i$, so if Bob is playing optimally to maximize his own score, then he is also playing optimally to minimize Alice's score.}
+
+\problemitem
+Let $G$ be a flow network with source $s$, sink $t$, and integer
+capacities $c(e)$ on each edge $e$.  Call an edge $e$ an \emph{acute edge} in
+$G$ if $e$ belongs to \emph{every minimum $s$-$t$ cut} of $G$.  There can be many minimum cuts, so we can't enumerate them, but there is an easier way to determine if an edge $e$ is acute.
+
+\begin{enumerate}[leftmargin=0pt, itemsep=1ex]
+	\item Prove that an edge $e$ is acute if and only if
+	increasing its capacity by $1$ increases the maximum flow of the
+	network by 1.
+	
+	\item Using the result of 3.1, describe an algorithm that takes a graph $G$ and a maximum flow $f$ in that graph and determines if an edge $e$ is acute.  Your algorithm should be more efficient than computing a new maximum flow from scratch---ideally just $O(m)$ time.  Justify that your algorithm is correct and analyze its running time.
+\end{enumerate}
+	
+\problemitem 
+Suppose that instead of capacities, we consider networks where each edge $e$ has some non-negative, integer-valued \emph{demand} $d(e) \geq 0$.  We say that an $(s,t)$-flow $f$ is \emph{feasible} if $f(e) \geq d(e)$ for every edge $e$, in addition to satisfying the flow-conservation constraints.  A natural problem in this setting is to find a feasible flow of \emph{minimum} value.
+\begin{enumerate}[leftmargin=0pt, itemsep=1ex]
+	\item Describe an efficient algorithm to compute a \emph{feasible} $(s,t)$-flow (not necessarily of minimum value).  Justify your algorithm's correctness, and analyze its running time.
+	
+	\item Suppose you have access to a subroutine $\textsc{MaxFlow}$ that solves the maximum $s$-$t$-flow problem. Describe an efficient algorithm to compute a minimum flow in a network with edge demands.  Your algorithm should call $\textsc{MaxFlow}$ exactly once.\footnote{\textbf{Hint:} Start with the feasible $(s,t)$-flow your algorithm finds in 4.1 and try to \emph{remove} as much flow as possible while still satisfying the demands.}  Justify that your algorithm is correct and analyze its running time, including the time required to execute $\textsc{MaxFlow}$.
+	
+	\item State and prove an analogue of the max-flow/min-cut theorem for this setting.  Do minimum flows correspond to maximum cuts for this problem?
+\end{enumerate}
+
+\end{enumerate}
+\end{document}
