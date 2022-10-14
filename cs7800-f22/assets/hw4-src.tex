@@ -1,0 +1,247 @@
+\documentclass[11pt]{article}
+
+% set this flag to 0 to remove comments
+\def\comments{1}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bbm}
+\usepackage{paralist}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{authblk}
+	\renewcommand{\Authsep}{\qquad}
+	\renewcommand{\Authand}{\qquad}
+	\renewcommand{\Authands}{\qquad}
+	\renewcommand\Affilfont{\itshape\small}
+\usepackage[left=1.25in,right=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\usepackage[bookmarks=false]{hyperref}
+    \hypersetup{
+        linktocpage=true,
+        colorlinks=true,				
+        linkcolor=DarkBlue,				
+        citecolor=DarkBlue,				
+        urlcolor=DarkBlue,			
+    }
+\usepackage[tt=false]{libertine}
+    \usepackage[libertine]{newtxmath}
+    \usepackage[T1]{fontenc}
+    \renewcommand{\baselinestretch}{1.00}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{nicefrac}
+\usepackage{tikz}
+	\usetikzlibrary{positioning}
+	\definecolor{DarkGreen}{rgb}{0.2,0.6,0.2}
+	\definecolor{DarkRed}{rgb}{0.6,0.2,0.2}
+	\definecolor{DarkBlue}{rgb}{0.2,0.2,0.6}
+	\definecolor{DarkPurple}{rgb}{0.4,0.2,0.4}   
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{framed}
+% \usepackage{ulem}
+% \normalem
+
+   
+% comments
+\setlength\marginparwidth{62pt}
+\setlength\marginparsep{5pt}
+\ifnum\comments=1
+    \newcommand{\mynote}[2]{{\marginpar{\color{#1}\sf \tiny #2}}}
+    \newcommand{\mynoteinline}[2]{{\color{#1} \sf \small #2}}
+\else
+\newcommand{\mynote}[2]{}
+    \newcommand{\mynoteinline}[2]{}
+\fi
+\newcommand{\jnote}[1]{\mynote{blue}{JU: #1}}
+\newcommand{\as}[1]{\mynote{red}{ADS: #1}}
+\newcommand{\anote}{\as}
+\newcommand{\asinline}[1]{\mynoteinline{red}{ADS: #1}}
+
+\renewcommand{\epsilon}{\eps}
+
+% fixing left-right spacing
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+% math macros
+\newcommand{\ex}[2]{{\ifx&#1& \mathbb{E} \else \underset{#1}{\mathbb{E}} \fi \left(#2\right)}}
+\newcommand{\pr}[2]{{\operatorname*{\mathbb{P}}_{#1} \paren{#2}}}
+\newcommand{\var}[2]{{\ifx&#1& \mathrm{Var} \else \underset{#1}{\mathrm{Var}} \fi \left(#2\right)}}
+
+\newcommand{\mypar}[1]{\medskip\textbf{#1}}
+
+\newcommand{\from}{:}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\polylog}{\mathrm{polylog}}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\ind}{\mathbb{I}}
+\newcommand{\pmo}{\{\pm 1\}}
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\bit}[1]{{\zo^{#1}}}
+\newcommand{\cond}[1]{\vert_{#1}}
+\newcommand{\norm}[2]{\|#1\|_{#2}}
+\newcommand{\abs}[1]{{\left | {#1} \right|}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nicehalf}{\nicefrac{1}{2}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\cardset}[1]{\left| \set{#1} \right|}
+\newcommand{\paren}[1]{{\left ( {#1} \right)}}
+\newcommand{\bparen}[1]{{\big( {#1} \big)}}
+\newcommand{\Bparen}[1]{{\Big( {#1} \Big)}}
+\newcommand{\bracket}[1]{{\left [ {#1} \right]}}
+\newcommand{\ip}[1]{{\left \langle {#1} \right\rangle }}
+
+\newcommand{\distance}{\mathrm{d}}
+\newcommand{\dtv}{\distance_{\mathrm{TV}}}
+\newcommand{\dkl}{\distance_{\mathrm{KL}}}
+\newcommand{\dhe}{\distance_{\mathrm{H^2}}}
+\newcommand{\dcs}{\distance_{\mathrm{\chi^2}}}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\defeq}{\stackrel{{\mbox{\tiny def}}}{=}}
+
+\newtheorem{thm}{Theorem}
+    \newtheorem{clm}[thm]{Claim}
+    \newtheorem{lem}[thm]{Lemma}
+    \newtheorem{prop}[thm]{Proposition}
+    \newtheorem{cor}[thm]{Corollary}
+    \newtheorem{fact}[thm]{Fact}
+    \newtheorem{claim}[thm]{Claim}
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+    \newtheorem{example}[thm]{Example}
+    \newtheorem{rem}[thm]{Remark}
+    \newtheorem{exer}[thm]{Exercise}
+
+\newcommand{\HWtitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS4810 / CS7800: Advanced Algorithms \hfill Fall 2022} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1: Due {#2}} \\[1em] {\bfseries \large Mahsa Derakhshan and Jonathan Ullman}\\[1ex] \end{figure}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%  Title  %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\HWtitle{4}{Friday, October 28, 2022}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Beginning  %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\textbf{Collaboration and Honesty Policy Reminder.}
+Collaboration in the form of discussion is allowed and encouraged. However, all forms of cheating are not allowed and will be penalized harshly.  These include, but are not limited to, copying parts of an assignment from a classmate, finding answers to problems on the internet or from anyone not enrolled in the class, and plagiarizing from research papers or old posted solutions.  A rule of thumb is that you should be able to walk away from discussing a homework problem with no notes and write your solution on your own.
+
+\begin{itemize}[itemsep=1pt]
+	\item You must write up all solutions by yourself, and may not share any written solutions, even if you collaborate with others to solve the problem.
+	
+	\item You must identify all your collaborators. If you did not collaborate, write ``no collaborators" or something to that effect. You may have a maximum of two collaborators per assignment, and collaboration is transitive (if you list a collaborator they must list you).
+	
+	\item Asking and answering questions in class forums (lectures, office hours, Piazza) is allowed and encouraged, and you do not need to list these interactions as collaborators.
+	
+	\item Seeking out alternative sources (e.g.\ classmates, textbooks, the internet) for general concepts you need (e.g.\ greedy algorithms, probability) is allowed and encouraged.
+\end{itemize}
+\medskip
+
+\renewcommand{\labelenumii}{{\bfseries \em \arabic{enumi}.\arabic{enumii}}}
+\newcommand{\problemitem}{\renewcommand{\labelenumi}{{\bfseries \em Problem \arabic{enumi}}}\item}
+\newcommand{\solutionitem}{\renewcommand{\labelenumi}{{\bfseries \em Solution \arabic{enumi}}}\addtocounter{enumi}{-1}\item}
+
+\paragraph{Assigned Problems} \phantom{.}
+
+\begin{enumerate}[leftmargin=0pt, itemsep=3ex]
+\problemitem  In this problem we will generalize the maximum (bipartite) matching problem to a weighted version.  In the \emph{maximum-weight (bipartite) matching problem} (\textsc{MWM}) you are given a bipartite graph $G = (L \cup R, E)$ with edge weights $\{w(e)\}$, and the goal is to find a matching $M \subseteq E$ maximizing the total weight $\sum_{e \in M} w(e)$.
+
+Using a reduction to the minimum-cost perfect (bipartite) matching problem (\textsc{MCPM}), design an efficient algorithm for solving \textsc{MWM}.    Justify the correctness of your reduction and analyze its running time, including the time required to solve \textsc{MCPM}.  You will receive full credit for any efficient reduction.
+
+\problemitem 
+As a top agent in the National Cyberwarfare Unit, you have been assigned the task of disrupting communication between enemy \emph{operators} and their embedded \emph{spies}. You have identified the communication network being used by the enemy, and have the network specified as a directed graph $G$ with $n$ nodes and $m$ edges.  You are also given a set of operator nodes $O$ and spy nodes $S$ and these sets are disjoint.  
+
+The goal is to determine the minimum number of edges to remove in order to make it impossible for any operator to contact any spy.  That is, after removing these edges, no node $v \in S$ should be reachable via a directed path from any node $u \in O$.  An example is illustrated in Figure~\ref{fig:disrupt}.
+
+%\begin{figure}[h!]
+%    \begin{center}
+%    \includegraphics[width=4in]{disrupt-communication.jpg}
+%    \caption{Communication network $G$ shown on the left.  The gray nodes are operators and the black nodes are spies.  Removing the dashed edges makes it so no operator can reach any spy.\label{fig:disrupt}}
+%    \end{center}
+%\end{figure}
+    
+Using a reduction to one of the problems we've studied in class, design an efficient algorithm that determines the smallest number of edges to remove.
+    
+
+\problemitem Each of the following questions describes a computational problem and asks you to write the problem as an equivalent linear program.
+    \begin{enumerate}[leftmargin=0pt, itemsep=1ex]
+        \item \emph{Multiple-goods maximum flow.} In real flow networks we often need to share the network to route more than one type of good.  We are given a directed, capacitated graph $G = (V,E,\{c(e)\})$.  There are $k$ goods and for each good $i$ we must find a flow $f_i$ to route the good from source $s_i$ to sink $t_i$.  We have three types of constraints to satisfy:
+        \begin{itemize}[nosep]
+            \item (Non-negativity) For every edge, the flow of every good is non-negative.
+            \item (Aggregate Capacity) For every edge, the sum of the flow of every good is at most the capacity.
+            \item (Flow conservation) For every good, the flow is conserved except at that good's source or sink.
+        \end{itemize}
+        Our objective is to maximize the sum of the flow of all $k$ goods.  Show how to write this optimization problem as a linear program.
+        
+        \item \emph{Soft linear classification.} This is a problem that arises in machine learning.  We are given $m$ labeled pairs $(x_i,y_i)$ where $x_i \in \mathbb{R}^n$ is a vector and $y_i \in \{-1,+1\}$ is a binary label.  Ideally we would like to find a \emph{linear classifier} $w \in \mathbb{R}^n$ such that $\mathrm{sign}(w \cdot x_i) = y_i$ for every pair.  However, such a classifier often doesn't exist.  A common goal is to find a classifier that minimizes a \emph{soft} version of this objective.  Specifically, for every $i$ we can compute the penalty $$\max\{ 0, -y_i(w \cdot x_i) \}$$ which is $0$ whenever $\mathrm{sign}(w \cdot x_i) = y_i$ and is negative otherwise with magnitude proportional to the magnitude of the sign error.  Our overall objective function becomes
+        $$
+            \sum_{i=1}^{n} \max\{0, -y_i(w \cdot x_i)\}
+        $$
+        Show how to write this \emph{non-linear} objective function as a linear program.
+    \end{enumerate}
+
+\problemitem
+Recall the Bake-Sale Problem from HW2.  You need to staff an event from time $0$ until time $T$.  Each of $n$ parents gave you a window of time $[s_i,f_i)$ that they are available.  (\emph{Note that we changed the problem slightly so that the parents' intervals do not include the time $f_i$.  Parents are busy and will skip out a few seconds early if they can.})  Your goal is to find the smallest set of parents $S \subseteq \{1,\dots,n\}$ such that $\bigcup_{i \in S} [s_i, f_i) \supseteq [0,T]$.  You may assume that all values $s_1,f_1,\dots,s_n,f_n$ are distinct and that using all $n$ parents would successfully staff the event.  In this question we'll take a fresh look at this problem using linear programming.
+
+\begin{enumerate}[leftmargin=0pt, itemsep=1ex]
+    \item Show that there exists some finite set of points $F \subseteq [0,T]$ such that any set of parents that can staff the table at every time in $F$ can also staff the table for all of $[0,T]$.
+    
+    \item Formulate the Bake-Sale Problem as a linear program with decision variables $x_1,\dots,x_n$ where $x_i$ indicates whether or not parent $i$ is used in the solution.
+    
+    \item Write the dual of your LP.
+    
+    \item Write an interpretation of the dual LP.
+    
+    \item Prove that both the LP and its dual have \emph{integral} optimal solutions.\footnote{\textbf{Hint:} You may want to use the fact that the greedy algorithm from HW2 solves this problem optimally.}
+\end{enumerate}
+\end{enumerate}
+\end{document}
