@@ -224,7 +224,7 @@ Using a reduction to one of the problems we've studied in class, design an effic
         
         \item \emph{Soft linear classification.} This is a problem that arises in machine learning.  We are given $m$ labeled pairs $(x_i,y_i)$ where $x_i \in \mathbb{R}^n$ is a vector and $y_i \in \{-1,+1\}$ is a binary label.  Ideally we would like to find a \emph{linear classifier} $w \in \mathbb{R}^n$ such that $\mathrm{sign}(w \cdot x_i) = y_i$ for every pair.  However, such a classifier often doesn't exist.  A common goal is to find a classifier that minimizes a \emph{soft} version of this objective.  Specifically, for every $i$ we can compute the penalty $$\max\{ 0, -y_i(w \cdot x_i) \}$$ which is $0$ whenever $\mathrm{sign}(w \cdot x_i) = y_i$ and is negative otherwise with magnitude proportional to the magnitude of the sign error.  Our overall objective function becomes
         $$
-            \sum_{i=1}^{n} \max\{0, -y_i(w \cdot x_i)\}
+            \min_{w} \sum_{i=1}^{n} \max\{0, -y_i(w \cdot x_i)\}
         $$
         Show how to write this \emph{non-linear} objective function as a linear program.
     \end{enumerate}
