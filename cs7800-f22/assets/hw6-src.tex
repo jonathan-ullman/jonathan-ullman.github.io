@@ -1,0 +1,238 @@
+\documentclass[11pt]{article}
+
+% set this flag to 0 to remove comments
+\def\comments{1}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bbm}
+\usepackage{paralist}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{authblk}
+	\renewcommand{\Authsep}{\qquad}
+	\renewcommand{\Authand}{\qquad}
+	\renewcommand{\Authands}{\qquad}
+	\renewcommand\Affilfont{\itshape\small}
+\usepackage[left=1.25in,right=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\usepackage[bookmarks=false]{hyperref}
+    \hypersetup{
+        linktocpage=true,
+        colorlinks=true,				
+        linkcolor=DarkBlue,				
+        citecolor=DarkBlue,				
+        urlcolor=DarkBlue,			
+    }
+\usepackage[tt=false]{libertine}
+    \usepackage[libertine]{newtxmath}
+    \usepackage[T1]{fontenc}
+    \renewcommand{\baselinestretch}{1.00}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{nicefrac}
+\usepackage{tikz}
+	\usetikzlibrary{positioning}
+	\definecolor{DarkGreen}{rgb}{0.2,0.6,0.2}
+	\definecolor{DarkRed}{rgb}{0.6,0.2,0.2}
+	\definecolor{DarkBlue}{rgb}{0.2,0.2,0.6}
+	\definecolor{DarkPurple}{rgb}{0.4,0.2,0.4}   
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{framed}
+% \usepackage{ulem}
+% \normalem
+
+   
+% comments
+\setlength\marginparwidth{62pt}
+\setlength\marginparsep{5pt}
+\ifnum\comments=1
+    \newcommand{\mynote}[2]{{\marginpar{\color{#1}\sf \tiny #2}}}
+    \newcommand{\mynoteinline}[2]{{\color{#1} \sf \small #2}}
+\else
+\newcommand{\mynote}[2]{}
+    \newcommand{\mynoteinline}[2]{}
+\fi
+\newcommand{\jnote}[1]{\mynote{blue}{JU: #1}}
+\newcommand{\as}[1]{\mynote{red}{ADS: #1}}
+\newcommand{\anote}{\as}
+\newcommand{\asinline}[1]{\mynoteinline{red}{ADS: #1}}
+
+\renewcommand{\epsilon}{\eps}
+
+% fixing left-right spacing
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+% math macros
+\newcommand{\ex}[2]{{\ifx&#1& \mathbb{E} \else \underset{#1}{\mathbb{E}} \fi \left(#2\right)}}
+\newcommand{\pr}[2]{{\operatorname*{\mathbb{P}}_{#1} \paren{#2}}}
+\newcommand{\var}[2]{{\ifx&#1& \mathrm{Var} \else \underset{#1}{\mathrm{Var}} \fi \left(#2\right)}}
+
+\newcommand{\mypar}[1]{\medskip\textbf{#1}}
+
+\newcommand{\from}{:}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\polylog}{\mathrm{polylog}}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\ind}{\mathbb{I}}
+\newcommand{\pmo}{\{\pm 1\}}
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\bit}[1]{{\zo^{#1}}}
+\newcommand{\cond}[1]{\vert_{#1}}
+\newcommand{\norm}[2]{\|#1\|_{#2}}
+\newcommand{\abs}[1]{{\left | {#1} \right|}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nicehalf}{\nicefrac{1}{2}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\cardset}[1]{\left| \set{#1} \right|}
+\newcommand{\paren}[1]{{\left ( {#1} \right)}}
+\newcommand{\bparen}[1]{{\big( {#1} \big)}}
+\newcommand{\Bparen}[1]{{\Big( {#1} \Big)}}
+\newcommand{\bracket}[1]{{\left [ {#1} \right]}}
+\newcommand{\ip}[1]{{\left \langle {#1} \right\rangle }}
+
+\newcommand{\distance}{\mathrm{d}}
+\newcommand{\dtv}{\distance_{\mathrm{TV}}}
+\newcommand{\dkl}{\distance_{\mathrm{KL}}}
+\newcommand{\dhe}{\distance_{\mathrm{H^2}}}
+\newcommand{\dcs}{\distance_{\mathrm{\chi^2}}}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\defeq}{\stackrel{{\mbox{\tiny def}}}{=}}
+
+\newtheorem{thm}{Theorem}
+    \newtheorem{clm}[thm]{Claim}
+    \newtheorem{lem}[thm]{Lemma}
+    \newtheorem{prop}[thm]{Proposition}
+    \newtheorem{cor}[thm]{Corollary}
+    \newtheorem{fact}[thm]{Fact}
+    \newtheorem{claim}[thm]{Claim}
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+    \newtheorem{example}[thm]{Example}
+    \newtheorem{rem}[thm]{Remark}
+    \newtheorem{exer}[thm]{Exercise}
+
+\newcommand{\HWtitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS4810 / CS7800: Advanced Algorithms \hfill Fall 2022} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1: Due {#2}} \\[1em] {\bfseries \large Mahsa Derakhshan and Jonathan Ullman}\\[1ex] \end{figure}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%  Title  %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\HWtitle{6}{Friday, December 9, 2022}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Beginning  %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\input{collab-policy}
+\medskip
+
+\renewcommand{\labelenumii}{{\bfseries \em \arabic{enumi}.\arabic{enumii}}}
+\newcommand{\problemitem}{\renewcommand{\labelenumi}{{\bfseries \em Problem \arabic{enumi}}}\item}
+\newcommand{\solutionitem}{\renewcommand{\labelenumi}{{\bfseries \em Solution \arabic{enumi}}}\addtocounter{enumi}{-1}\item}
+
+\paragraph{Assigned Problems} \phantom{.}
+
+
+\begin{enumerate}[leftmargin=0pt, itemsep=3ex]
+\problemitem In class we only studied hash tables that store a set of items $S = \{x_1,\dots,x_n\} \subseteq \mathcal{U}$ so that we can check very quickly if an element $x \in S$ or not.  These data structures used close to the minimum amount of space $n \log_2 |\mathcal{U}|$.  In this problem you will build a data structure that can save space by storing $S$ \emph{approximately}, meaning we allow for some mistakes when checking if $x \in S$.
+
+Consider the following data structure:
+\begin{itemize}[nosep]
+    \item Choose $k$ \emph{independent, uniformly random} hash functions $h_1,\dots,h_k : \mathcal{U} \to [m]$.\footnote{That is, we choose each $h$ uniformly from the set of all functions from $\mathcal{U}$ to $[m]$.}
+    \item Create an array $T[1:m]$ and initialize $T[j] = 0$ for every $j$.
+    \item For each $x_i \in S$ and each $\ell = 1,\dots,k$: set $T[h_\ell(x_i)] = 1$.
+\end{itemize}
+Given the array $T$, we can check to see if $x \in S$ as follows:
+\begin{itemize}[nosep]
+    \item If $T[h_{\ell}(x)] = 1$ for every $\ell = 1,\dots,k$, return \textsc{true}, else return $\textsc{false}$.
+\end{itemize}
+Ideal random hash functions would require an unreasonable amount of space, but it makes it possible to analyze this data structure, so we will ignore this issue for the rest of the question and assume that the number of bits required for this data structure is just $m$.
+\begin{enumerate}[leftmargin=\parindent, itemsep=1ex]
+    \item Prove that this data structure has no \emph{false negatives}, that is, if $x \in S$, then the data structure will return $\textsc{true}$ for every choice of the random hash functions $h_1,\dots,h_k$.
+    
+    \item Calculate $\mathbb{P}(T[j] = 0)$ after we have constructed the table $T$.  You should allow $S$ to be any set, and the only thing random in your analysis should be the hash functions $h_1,\dots,h_k$.
+    
+    \item Prove an upper bound on the probability of a \emph{false positive} in terms of $k, m,$ and  $n$.  That is, the probability that the data structure returns $\textsc{true}$ when we look for $x \not\in S$.\footnote{\textbf{Hint:} You may freely use the approximation $(1-1/t)^u \approx e^{-u/t}$.}
+    
+    \item Show that for some choice of $k$ and some choice of $m = O(n \log(1/\eps))$ we can make the probability of a false positive at most $\eps$.
+\end{enumerate}
+Putting these steps together, we can store an approximate version of $S$ using just $O(n \log(1/\eps))$ bits, while ensuring no false negatives and a false positive rate of $\eps$.
+
+\problemitem In this problem you will build a streaming algorithm for a very simple problem---counting the number of 1's in a stream of bits.  You are given a stream of bits $x_1,\dots,x_n$ and would like to compute $s = \sum_{i=1}^{n} x_i$.  Since the sum can be as large as $n$, computing it exactly requires $\log_2 n$ bits of space.  In this problem we will see a simple algorithm that \emph{approximates} the sum with space complexity proportional to $\log \log n$.
+
+Consider the following algorithm that outputs an estimator of $s$, denoted $\tilde{s}$:
+\begin{itemize}[nosep]
+    \item Let $X = 0$
+    \item For $i = 1,\dots,n$: if $x_i = 1$ increment $X$ to $X+1$ with probability $2^{-X}$, otherwise do nothing
+    \item Return $\tilde{s} = 2^X - 1$
+\end{itemize}
+
+First we will analyze the space required to compute $\tilde{s}$.  Note that the number of bits required to store $X$ at any given time is $\log_2 X$, so we will try to argue that $\log_2 X$ does not get too big.
+\begin{enumerate}[leftmargin=\parindent, itemsep=1ex]
+    \item Prove that $\mathbb{P}(\log_2 X \geq k) \leq s / 2^{2^k}$ and conclude that the expected number of bits required to store the value $X$ is $O(\log \log s)$.\footnote{\textbf{Hint:} You may find the following fact useful:  For a non-negative integer random variable $\mathbb{E}(X) = \sum_{i=1}^{\infty} \mathbb{P}(X \geq i)$.}
+\end{enumerate}
+Next we will show that we can use the estimator $\tilde{s}$ to obtain a good estimate of $s$.
+
+\begin{enumerate}[leftmargin=\parindent, itemsep=1ex]
+\addtocounter{enumii}{1}   
+    \item Prove by induction that $\mathbb{E}(2^X) = s+1$, so $\tilde{s}$ is an unbiased estimator of $s$.  You may find it helpful to use the notation $X_t$ to refer to the value of $X$ after seeing the value $1$ in the stream $t$ times.
+     
+    \item Prove that $\mathit{Var}(2^X) = O(s^2)$ where $\mathrm{Var}$ denotes the \emph{variance}.
+    
+    \item Prove that when $U,V$ are \emph{independent} random variables $\mathit{Var}(U + V) = \mathit{Var}(U) + \mathit{Var}(V)$.
+    
+    \item Suppose we run $\tilde{s}$ in parallel $k$ times on the same inputs \emph{independently} to obtain $\tilde{s}_{1},\dots,\tilde{s}s_{k}$, and then return the average $\bar{s}_{k} = \frac{1}{k} \sum_{j=1}^{k} \tilde{s}_{j}$.  Compute the mean and variance of $\bar{s}$.
+    
+    \item Using Chebyshev's inequality, conclude that $\mathbb{P}(|\bar{s}_{k} - s| > s/100) \leq 1/100$ for some constant $k$ that does not depend on $s$ or $n$.
+\end{enumerate}
+Putting these steps together, we have proven that we can estimate $s$ to within $\pm 1\%$ error using just $O(\log \log s)$ space in expectation.
+\end{enumerate}
+\end{document}
