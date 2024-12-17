@@ -1,0 +1,1 @@
+scp -r ./*  jullman@login.ccs.neu.edu:/home/jullman/.www/cs7800f22
