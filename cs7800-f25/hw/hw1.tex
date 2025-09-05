@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+
+
+\newcommand{\E}{\mathbb{E}}
+\usepackage[table,xcdraw]{xcolor}
+% set this flag to 0 to remove comments
+\def\comments{1}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bbm}
+\usepackage{paralist}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{authblk}
+	\renewcommand{\Authsep}{\qquad}
+	\renewcommand{\Authand}{\qquad}
+	\renewcommand{\Authands}{\qquad}
+	\renewcommand\Affilfont{\itshape\small}
+\usepackage[left=1.25in,right=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\usepackage[bookmarks=false]{hyperref}
+    \hypersetup{
+        linktocpage=true,
+        colorlinks=true,				
+        linkcolor=DarkBlue,				
+        citecolor=DarkBlue,				
+        urlcolor=DarkBlue,			
+    }
+\usepackage[tt=false]{libertine}
+    \usepackage[libertine]{newtxmath}
+    \usepackage[T1]{fontenc}
+    \renewcommand{\baselinestretch}{1.00}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{nicefrac}
+\usepackage{tikz}
+	\usetikzlibrary{positioning}
+	\definecolor{DarkGreen}{rgb}{0.2,0.6,0.2}
+	\definecolor{DarkRed}{rgb}{0.6,0.2,0.2}
+	\definecolor{DarkBlue}{rgb}{0.2,0.2,0.6}
+	\definecolor{DarkPurple}{rgb}{0.4,0.2,0.4}   
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{framed}
+% \usepackage{ulem}
+% \normalem
+
+   
+% comments
+\setlength\marginparwidth{62pt}
+\setlength\marginparsep{5pt}
+\ifnum\comments=1
+    \newcommand{\mynote}[2]{{\marginpar{\color{#1}\sf \tiny #2}}}
+    \newcommand{\mynoteinline}[2]{{\color{#1} \sf \small #2}}
+\else
+\newcommand{\mynote}[2]{}
+    \newcommand{\mynoteinline}[2]{}
+\fi
+\newcommand{\jnote}[1]{\mynote{blue}{JU: #1}}
+\newcommand{\as}[1]{\mynote{red}{ADS: #1}}
+\newcommand{\anote}{\as}
+\newcommand{\asinline}[1]{\mynoteinline{red}{ADS: #1}}
+
+\renewcommand{\epsilon}{\eps}
+
+% fixing left-right spacing
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+% math macros
+\newcommand{\ex}[2]{{\ifx&#1& \mathbb{E} \else \underset{#1}{\mathbb{E}} \fi \left(#2\right)}}
+\newcommand{\pr}[2]{{\operatorname*{\mathbb{P}}_{#1} \paren{#2}}}
+\newcommand{\var}[2]{{\ifx&#1& \mathrm{Var} \else \underset{#1}{\mathrm{Var}} \fi \left(#2\right)}}
+
+\newcommand{\mypar}[1]{\medskip\textbf{#1}}
+
+\newcommand{\from}{:}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\polylog}{\mathrm{polylog}}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\ind}{\mathbb{I}}
+\newcommand{\pmo}{\{\pm 1\}}
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\bit}[1]{{\zo^{#1}}}
+\newcommand{\cond}[1]{\vert_{#1}}
+\newcommand{\norm}[2]{\|#1\|_{#2}}
+\newcommand{\abs}[1]{{\left | {#1} \right|}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nicehalf}{\nicefrac{1}{2}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\cardset}[1]{\left| \set{#1} \right|}
+\newcommand{\paren}[1]{{\left ( {#1} \right)}}
+\newcommand{\bparen}[1]{{\big( {#1} \big)}}
+\newcommand{\Bparen}[1]{{\Big( {#1} \Big)}}
+\newcommand{\bracket}[1]{{\left [ {#1} \right]}}
+\newcommand{\ip}[1]{{\left \langle {#1} \right\rangle }}
+
+\newcommand{\distance}{\mathrm{d}}
+\newcommand{\dtv}{\distance_{\mathrm{TV}}}
+\newcommand{\dkl}{\distance_{\mathrm{KL}}}
+\newcommand{\dhe}{\distance_{\mathrm{H^2}}}
+\newcommand{\dcs}{\distance_{\mathrm{\chi^2}}}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\defeq}{\stackrel{{\mbox{\tiny def}}}{=}}
+
+\newtheorem{thm}{Theorem}
+    \newtheorem{clm}[thm]{Claim}
+    \newtheorem{lem}[thm]{Lemma}
+    \newtheorem{prop}[thm]{Proposition}
+    \newtheorem{cor}[thm]{Corollary}
+    \newtheorem{fact}[thm]{Fact}
+    \newtheorem{claim}[thm]{Claim}
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+    \newtheorem{example}[thm]{Example}
+    \newtheorem{rem}[thm]{Remark}
+    \newtheorem{exer}[thm]{Exercise}
+
+\newcommand{\HWtitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS7800: Advanced Algorithms \hfill Fall 2025} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1 \hfill Due: {#2}} \\[1em] {\bfseries \large Jonathan Ullman}\\[1ex] \end{figure}}
+
+\newcommand{\HWsoltitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS4810 / CS7800: Advanced Algorithms \hfill Fall 2025} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1 Solutions} \\[1em] {\bfseries \large Jonathan Ullman}\\[1ex] \end{figure}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%  Title  %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\HWtitle{1}{09/12/25, 11:59pm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Beginning  %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\labelenumii}{{\bfseries \em \arabic{enumi}.\arabic{enumii}}}
+\newcommand{\problemitem}{\renewcommand{\labelenumi}{{\bfseries \em Problem \arabic{enumi}}}\item}
+\newcommand{\solutionitem}{\renewcommand{\labelenumi}{{\bfseries \em Solution \arabic{enumi}}}\addtocounter{enumi}{-1}\item}
+
+\input{collab-policy}
+
+\paragraph{Assigned Problems}
+\begin{enumerate}[leftmargin=0pt, itemsep=3ex]
+
+\problemitem This question will test your comfort with asymptotic notation, which we lean on when analyzing the running time of algorithms.  If you need to review this material, I recommend KT Chapter 2.
+
+Put the following functions in asymptotic order from smallest to largest by asymptotic (``big $O$'') notation and labels which asymptotic relationships are strict (``little $o$'').  More specifically, given the eight functions below, put them in order $f_1 \preceq f_2 \preceq \dots \preceq f_{8}$ so that $f_i = O(f_{i+1})$ for each $i$ and indicate whether the pair also satisfies $f_i = o(f_{i+1})$.
+
+\begin{equation*}
+    \sum_{i=1}^{n} 2^i \qquad \sum_{i=1}^{n} i \qquad 2.2^n \qquad \log_{2}^{2} n \qquad n \qquad \log_2(n^3) \qquad \sum_{i=1}^{n} \frac{1}{i} \qquad 5^{\log_4 n}
+\end{equation*}
+    
+\problemitem These questions will test your comfort with some common proof strategies we will use: proof-by-induction and proof-by-contradiction.  If you need to review this material, I recommend Appendix I in Erickson.\footnote{\url{https://jeffe.cs.illinois.edu/teaching/algorithms/}}
+
+\begin{enumerate}[leftmargin=0pt, itemsep=3ex]
+    \item Prove by contradiction that any \emph{tree}\footnote{A \emph{tree} is an undirected graph that is \emph{connected} and \emph{acyclic}.} $G = (V,E)$ contains at least two \emph{leaves}.\footnote{A \emph{leaf} in a tree is a node with exactly one neighbor.}
+
+    \item Prove by induction that for every real number $x \geq 0$ and every integer $n \geq 0$, $(1+x)^n \geq 1+nx$.
+    
+    \item Your friend tries to convince you of the following obviously erroneous theorem, and gives the following proof by induction.
+    \begin{thm}
+        In every set of $n \geq 1$ students, every student uses the same chatbot to do their homework.
+    \end{thm}
+    \begin{proof}
+        Let $H(n)$ be the statement ``In every set of $1 \leq n \leq k$ students, every student uses the same chatbot to do their homework''  We will prove that $H(n)$ is true for every $n$.  For the base case $H(1)$ is true since any single student  uses the same chatbot as itself.  For the inductive step, we will prove that $H(n-1) \Longrightarrow H(n)$ for every $n \geq 2$.  Consider any set of $n$ students.  By the inductive hypothesis $H(n-1)$, the first $n-1$ students use the same chatbot
+        \begin{equation*}
+            \underbrace{s_1~~s_2~~s_3~~\dots~~s_{n-1}}_{\text{same chatbot}}~~s_{n}
+        \end{equation*}
+        Also by the inductive hypothesis, the last $n-1$ students use the same chatbot
+        \begin{equation*}
+            s_1~~\underbrace{s_2~~s_3~~\dots~~s_{n-1}~~s_{n}}_{\text{same chatbot}}
+        \end{equation*}
+        By transitivity, all $n$ of the students use the smae chatbot.  The proof of the theorem now follows by induction.
+    \end{proof}
+    Since the statement is obviously false, there must be a specific flaw in the proof.  What is it?
+\end{enumerate}
+
+\problemitem This question will test your knowledge of undergraduate-level algorithms and algorithmic concepts, as well as your ability to write algorithms in pseudocode and to analyze those algorithms' properties.  If you need to review this material, I suggest reading KT Chapters 2, 3, and 5.
+
+You are looking for an apartment and you'd like to find one that is in good condition.  Unfortunately, Boston apartments are old, and landlords play lots of tricks with their photographs, so you won't know the condition of an apartment until you go see it.  Since you are so busy with algorithms homework, you won't have time to visit every apartment, but you decide that you'll be satisfied as long as you can find an apartment that is in better condition than those of your neighbors.  Fortunately, we will show you that you only need to visit a very small fraction of the apartments in Boston to find a place to live.
+
+More precisely, there are $n$ apartments on a single street, and there are numbers $c_1,\dots,c_n$ that represent the condition of the apartment.  Your goal is to find an apartment that is in better condition than your neighbors, meaning apartment $i$ such that $c_i \geq c_{i-1}$ and $c_i \geq c_{i+1}$.  If $i = 1$ then it's enough to have $c_1 \geq c_2$ and if $i = n$ then it's enough to have $c_n \geq c_{n-1}$.  
+
+Design and analyze an algorithm that finds an apartment that is in better condition than its neighbors, and visits only $O(\log n)$ apartments.\footnote{{\bf Hint:} Think about binary search!}  Your solution should include
+\begin{itemize}[nosep]
+        \item A clear \emph{pseudocode} description of your algorithm.
+        \item A clear argument of its correctness.  Your argument doesn't need to be overly formal, as long as it's logical and convincing.
+        \item An analysis of the asymptotic (``big $O$'') worst-case number of apartments visited.
+    \end{itemize}
+    
+
+\problemitem This series of questions will test your comfort with discrete probability, which will be important later in the course when we study randomized algorithms.  If you need to review this material, I suggest reading the Discrete Probability chapter of Erickson.
+
+
+A fair die with $n$ sides has the numbers $1,2,\dots,n$ written on it, and when you roll it each of the numbers comes up with equal probability $1/n$.  Suppose you have a set of six fair dice with 4, 6, 8, 10, 12, and 20 sides.  You roll each of the six dice, and define the random variables $X_4, X_6, X_8, X_{10}, X_{12},$ and $X_{20}$ to be the value that comes up on each of the dice.  Calculate the following expected values:
+%\renewcommand{\labelenumiii}{(\alph{enumiii})}
+\begin{enumerate}[leftmargin=0pt, itemsep=0ex]
+    \item $\ex{}{X_{4}}$
+    \item $\ex{}{X_{4} + X_{6} + X_{8} + X_{10} + X_{12} + X_{20}}$
+    \item $\ex{}{X_{4}^{2}}$
+    \item $\ex{}{X_{8}^{2} \mid X_{4} + X_{8} = 7}$
+    \item $\ex{}{X_{4}X_{6} \mid X_{4} + X_{6} = 5}$
+    \item $\ex{}{X_{10} X_{12} X_{20} \mid X_{4}  + X_{6} = 3}$
+\end{enumerate}
+
+\end{enumerate}
+\end{document}
