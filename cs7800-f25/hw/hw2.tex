@@ -1,0 +1,256 @@
+\documentclass[11pt]{article}
+
+
+\newcommand{\E}{\mathbb{E}}
+\usepackage[table,xcdraw]{xcolor}
+% set this flag to 0 to remove comments
+\def\comments{1}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bbm}
+\usepackage{paralist}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{authblk}
+	\renewcommand{\Authsep}{\qquad}
+	\renewcommand{\Authand}{\qquad}
+	\renewcommand{\Authands}{\qquad}
+	\renewcommand\Affilfont{\itshape\small}
+\usepackage[left=1.25in,right=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\usepackage[bookmarks=false]{hyperref}
+    \hypersetup{
+        linktocpage=true,
+        colorlinks=true,				
+        linkcolor=DarkBlue,				
+        citecolor=DarkBlue,				
+        urlcolor=DarkBlue,			
+    }
+\usepackage[tt=false]{libertine}
+    \usepackage[libertine]{newtxmath}
+    \usepackage[T1]{fontenc}
+    \renewcommand{\baselinestretch}{1.00}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{nicefrac}
+\usepackage{tikz}
+	\usetikzlibrary{positioning}
+	\definecolor{DarkGreen}{rgb}{0.2,0.6,0.2}
+	\definecolor{DarkRed}{rgb}{0.6,0.2,0.2}
+	\definecolor{DarkBlue}{rgb}{0.2,0.2,0.6}
+	\definecolor{DarkPurple}{rgb}{0.4,0.2,0.4}   
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{framed}
+% \usepackage{ulem}
+% \normalem
+
+   
+% comments
+\setlength\marginparwidth{62pt}
+\setlength\marginparsep{5pt}
+\ifnum\comments=1
+    \newcommand{\mynote}[2]{{\marginpar{\color{#1}\sf \tiny #2}}}
+    \newcommand{\mynoteinline}[2]{{\color{#1} \sf \small #2}}
+\else
+\newcommand{\mynote}[2]{}
+    \newcommand{\mynoteinline}[2]{}
+\fi
+\newcommand{\jnote}[1]{\mynote{blue}{JU: #1}}
+\newcommand{\as}[1]{\mynote{red}{ADS: #1}}
+\newcommand{\anote}{\as}
+\newcommand{\asinline}[1]{\mynoteinline{red}{ADS: #1}}
+
+\renewcommand{\epsilon}{\eps}
+
+% fixing left-right spacing
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+% math macros
+\newcommand{\ex}[2]{{\ifx&#1& \mathbb{E} \else \underset{#1}{\mathbb{E}} \fi \left(#2\right)}}
+\newcommand{\pr}[2]{{\operatorname*{\mathbb{P}}_{#1} \paren{#2}}}
+\newcommand{\var}[2]{{\ifx&#1& \mathrm{Var} \else \underset{#1}{\mathrm{Var}} \fi \left(#2\right)}}
+
+\newcommand{\mypar}[1]{\medskip\textbf{#1}}
+
+\newcommand{\from}{:}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\polylog}{\mathrm{polylog}}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\ind}{\mathbb{I}}
+\newcommand{\pmo}{\{\pm 1\}}
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\bit}[1]{{\zo^{#1}}}
+\newcommand{\cond}[1]{\vert_{#1}}
+\newcommand{\norm}[2]{\|#1\|_{#2}}
+\newcommand{\abs}[1]{{\left | {#1} \right|}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nicehalf}{\nicefrac{1}{2}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\cardset}[1]{\left| \set{#1} \right|}
+\newcommand{\paren}[1]{{\left ( {#1} \right)}}
+\newcommand{\bparen}[1]{{\big( {#1} \big)}}
+\newcommand{\Bparen}[1]{{\Big( {#1} \Big)}}
+\newcommand{\bracket}[1]{{\left [ {#1} \right]}}
+\newcommand{\ip}[1]{{\left \langle {#1} \right\rangle }}
+
+\newcommand{\distance}{\mathrm{d}}
+\newcommand{\dtv}{\distance_{\mathrm{TV}}}
+\newcommand{\dkl}{\distance_{\mathrm{KL}}}
+\newcommand{\dhe}{\distance_{\mathrm{H^2}}}
+\newcommand{\dcs}{\distance_{\mathrm{\chi^2}}}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\defeq}{\stackrel{{\mbox{\tiny def}}}{=}}
+
+\newtheorem{thm}{Theorem}
+    \newtheorem{clm}[thm]{Claim}
+    \newtheorem{lem}[thm]{Lemma}
+    \newtheorem{prop}[thm]{Proposition}
+    \newtheorem{cor}[thm]{Corollary}
+    \newtheorem{fact}[thm]{Fact}
+    \newtheorem{claim}[thm]{Claim}
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+    \newtheorem{example}[thm]{Example}
+    \newtheorem{rem}[thm]{Remark}
+    \newtheorem{exer}[thm]{Exercise}
+
+\newcommand{\HWtitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS7800: Advanced Algorithms \hfill Fall 2025} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1: Due {#2}} \\[1em] {\bfseries \large Jonathan Ullman}\\[1ex] \end{figure}}
+
+\newcommand{\HWsoltitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS7800: Advanced Algorithms \hfill Fall 2025} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1 Solutions} \\[1em] {\bfseries \large Jonathan Ullman}\\[1ex] \end{figure}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%  Title  %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\HWtitle{1}{Friday, September 26, 2025}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Beginning  %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\labelenumii}{{\bfseries \em \arabic{enumi}.\arabic{enumii}}}
+\newcommand{\problemitem}{\renewcommand{\labelenumi}{{\bfseries \em Problem \arabic{enumi}}}\item}
+\newcommand{\solutionitem}{\renewcommand{\labelenumi}{{\bfseries \em Solution \arabic{enumi}}}\addtocounter{enumi}{-1}\item}
+
+%\input{cs7800-f25/collab-policy}
+
+\noindent\textbf{\color{blue} \Large Assigned Problems (Collected and Graded)}
+
+\begin{enumerate}[leftmargin=0pt, itemsep=3ex]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problemitem Your local school is planning its annual bake sale to raise funds and needs parents to help staff the event.  The event runs from time $0$ to time $T$.  The parents were surveyed, and each of $n$ parents provided one specific time window where they can volunteer, with parent $i$ volunteering for the window of $s_i$ until $f_i$.  Since each parent will eat something from the table as compensation, you'd like to use the smallest number of different parents to staff the event.  Specifically, find the smallest set $S \subseteq \{1,2,\dots,n\}$ so that
+$
+\bigcup_{i \in S} [s_i, f_i] \supseteq [0,T].
+$
+Design a greedy algorithm that solves this problem.  For simplicity, you may assume that all the values $s_i$ and $f_i$ are distinct, and that it is possible to staff the entire event from time $0$ to time $T$.  For full credit your algorithm should run in time $O(n \log n)$, but slower algorithms will receive significant partial credit.\footnote{\textbf{Hint:} Trying to come up with an $O(n \log n)$ time algorithm on the first try might cause you to overthink things.  First think about what the parents the algorithm should choose and how to prove correctness, then separately think about how to implement those choices in $O(n \log n)$ time.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problemitem The NASA Near Earth Object Program  lists potential future Earth impact events that the JPL Sentry System has detected based on currently available observations.   Sentry is a highly automated collision monitoring system that continually scans the most current asteroid catalog for possibilities of future impact with Earth over the next 100 years. 
+
+This system allows us to predict that $i$ years from now, there will be $x_i$ tons of asteroid material that has near-Earth trajectories.  In the mean time, we can build a space laser that can blast asteroids.  However,  each laser blast will require exajoules of energy, and so there will need to be a recharge period on the order of years between each use of the laser.  The longer the recharge period, the stronger the blast---after $j$ years of charging, the laser will have enough power to obliterate $d_j$ tons of asteroid material.  You must find the best way to use the laser.
+
+The input to the algorithm consists of the vectors $(x_1,\ldots,x_n)$ and $(d_1,\ldots,d_n)$ representing the incoming asteroid material in years $1$ to $n$, and the power of the laser $d_i$ if it charges for $i$ years.  The output consists of the optimal schedule for firing the laser to obliterate the most material.
+
+\medskip
+\emph{Example:} Suppose $(x_1,x_2,x_3,x_4)=(1,10,10,1)$ and $(d_1,d_2,d_3,d_4) = (1,2,4,8)$.  
+The best solution is to fire the laser at times $3,4$.  This solution blasts a total of $5$ tons of asteroids.
+
+    \begin{enumerate}[leftmargin=0pt, itemsep=3ex]
+    \item Construct an input on which  the following ``greedy" algorithm returns the wrong answer:
+    
+    \begin{algorithm}[h!]
+    \DontPrintSemicolon
+    \caption{\textsc{BadLaser}$(x_1,\ldots,x_n,d_1,\ldots,d_n)$}
+    Compute the smallest $j$ such that $d_j\geq x_n$ or set $j = n$ if no such $j$ exists \;
+    Shoot the laser at time $j$;
+    
+    \lIf{$j < n$}{\Return \textsc{BadLaser}$(x_1,\ldots,x_{n-j},d_1,\ldots,d_{n-j})$}
+    \end{algorithm}
+    Intuitively, the algorithm figures out how many years $j$ are needed to blast all the material in the last time slot.  It shoots during that last time slot, and then accounts for the $j$ years required to recharge for that last slot, and then recursively applies the same rule for slots $1$ through $n-j$. 
+    
+    % \solution
+    
+    % Consider an instance where $(x_1, x_2, x_3, x_4) = (1,2,100,2)$ and $(d_1, d_2, d_3, d_4)=(1,2,100,101)$. \textsc{BadLaser}$(1,2,100,2), (1,2,100,101)$ would shoot at time $4$ and blast $x_4=2$ tons of asteroids. Since the smallest number of years $j$ such that $d_j\geq 2$ is $j=2$, the recursive call would be \textsc{BadLaser}$(1,2), (1,2)$. The laser would choose to shoot again at time $2$ and blast another $x_2=2$ tons of asteroids. The smallest number of years $j$ such that $d_j\geq 2$ is $j=2$ so the algorithm would terminate. Overall $\textsc{BadLaser}$ would manage to destroy $4$ tons of asteroids. However, the optimal solution is to wait $3$ years and shoot at time $3$ blasting $100$ tons of asteroids. Therefore, \textsc{BadLaser} is not the right algorithm for this problem.
+    
+    \item Let $\textsc{opt}(j)$ be the maximum amount of asteroid we can blast from year $1$ to year $j$.  Write a recurrence for $\textsc{opt}(j)$. Justifying that your recurrence is correct (a few sentences should suffice).
+
+    \item Using your recurrence, design an efficient dynamic programming algorithm to output the optimal set of times to fire the laser.  You may use either a top-down or bottom-up approach.  Your algorithm needs to output the optimal set of times to fire the laser, not just the number $\textsc{opt}(n)$.
+
+    \item Analyze the running time of your algorithm.
+    \end{enumerate}
+\end{enumerate}
+
+\noindent\textbf{\color{red} \Large Optional Problems (Not Collected, Not Graded)}
+
+\medskip
+\noindent These problems will mostly be pointers to problems I like in the two textbooks.  Links to these resources are available on Piazza.
+
+\begin{enumerate}[leftmargin=0pt, itemsep=3ex]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problemitem Show that there are instances of the stable matching problem with exponentially many distinct stable matchings.  Specifically, for every $n$, construct preferences for $n$ hospitals and $n$ doctors/residents and argue that the number of distinct stable matchings for these preferences is $\Omega(b^n)$ for some constant $b > 1$.  For a challenge, try to make $b$ as large as possible.
+
+\problemitem Kleinberg-Tardos Chapter 4, Exercises 6 (Greedy Algorithms)
+
+\problemitem Kleinberg-Tardos Chapter 4, Exercises 8 and 9 (Minimum Spanning Trees)
+
+\problemitem Kleinberg-Tardos Chapter 5, Exercises 1 and 6 (Dynamic Programming)
+\end{enumerate}
+\end{document}
