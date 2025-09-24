@@ -223,10 +223,6 @@ The best solution is to fire the laser at times $3,4$.  This solution blasts a t
     \end{algorithm}
     Intuitively, the algorithm figures out how many years $j$ are needed to blast all the material in the last time slot.  It shoots during that last time slot, and then accounts for the $j$ years required to recharge for that last slot, and then recursively applies the same rule for slots $1$ through $n-j$. 
     
-    % \solution
-    
-    % Consider an instance where $(x_1, x_2, x_3, x_4) = (1,2,100,2)$ and $(d_1, d_2, d_3, d_4)=(1,2,100,101)$. \textsc{BadLaser}$(1,2,100,2), (1,2,100,101)$ would shoot at time $4$ and blast $x_4=2$ tons of asteroids. Since the smallest number of years $j$ such that $d_j\geq 2$ is $j=2$, the recursive call would be \textsc{BadLaser}$(1,2), (1,2)$. The laser would choose to shoot again at time $2$ and blast another $x_2=2$ tons of asteroids. The smallest number of years $j$ such that $d_j\geq 2$ is $j=2$ so the algorithm would terminate. Overall $\textsc{BadLaser}$ would manage to destroy $4$ tons of asteroids. However, the optimal solution is to wait $3$ years and shoot at time $3$ blasting $100$ tons of asteroids. Therefore, \textsc{BadLaser} is not the right algorithm for this problem.
-    
     \item Let $\textsc{opt}(j)$ be the maximum amount of asteroid we can blast from year $1$ to year $j$.  Write a recurrence for $\textsc{opt}(j)$. Justifying that your recurrence is correct (a few sentences should suffice).
 
     \item Using your recurrence, design an efficient dynamic programming algorithm to output the optimal set of times to fire the laser.  You may use either a top-down or bottom-up approach.  Your algorithm needs to output the optimal set of times to fire the laser, not just the number $\textsc{opt}(n)$.
