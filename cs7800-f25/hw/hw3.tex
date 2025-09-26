@@ -1,0 +1,229 @@
+\documentclass[11pt]{article}
+
+
+\newcommand{\E}{\mathbb{E}}
+\usepackage[table,xcdraw]{xcolor}
+% set this flag to 0 to remove comments
+\def\comments{1}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bbm}
+\usepackage{paralist}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{authblk}
+	\renewcommand{\Authsep}{\qquad}
+	\renewcommand{\Authand}{\qquad}
+	\renewcommand{\Authands}{\qquad}
+	\renewcommand\Affilfont{\itshape\small}
+\usepackage[left=1.25in,right=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\usepackage[bookmarks=false]{hyperref}
+    \hypersetup{
+        linktocpage=true,
+        colorlinks=true,				
+        linkcolor=DarkBlue,				
+        citecolor=DarkBlue,				
+        urlcolor=DarkBlue,			
+    }
+\usepackage[tt=false]{libertine}
+    \usepackage[libertine]{newtxmath}
+    \usepackage[T1]{fontenc}
+    \renewcommand{\baselinestretch}{1.00}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{nicefrac}
+\usepackage{tikz}
+	\usetikzlibrary{positioning}
+	\definecolor{DarkGreen}{rgb}{0.2,0.6,0.2}
+	\definecolor{DarkRed}{rgb}{0.6,0.2,0.2}
+	\definecolor{DarkBlue}{rgb}{0.2,0.2,0.6}
+	\definecolor{DarkPurple}{rgb}{0.4,0.2,0.4}   
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{framed}
+% \usepackage{ulem}
+% \normalem
+
+   
+% comments
+\setlength\marginparwidth{62pt}
+\setlength\marginparsep{5pt}
+\ifnum\comments=1
+    \newcommand{\mynote}[2]{{\marginpar{\color{#1}\sf \tiny #2}}}
+    \newcommand{\mynoteinline}[2]{{\color{#1} \sf \small #2}}
+\else
+\newcommand{\mynote}[2]{}
+    \newcommand{\mynoteinline}[2]{}
+\fi
+\newcommand{\jnote}[1]{\mynote{blue}{JU: #1}}
+\newcommand{\as}[1]{\mynote{red}{ADS: #1}}
+\newcommand{\anote}{\as}
+\newcommand{\asinline}[1]{\mynoteinline{red}{ADS: #1}}
+
+\renewcommand{\epsilon}{\eps}
+
+% fixing left-right spacing
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+% math macros
+\newcommand{\ex}[2]{{\ifx&#1& \mathbb{E} \else \underset{#1}{\mathbb{E}} \fi \left(#2\right)}}
+\newcommand{\pr}[2]{{\operatorname*{\mathbb{P}}_{#1} \paren{#2}}}
+\newcommand{\var}[2]{{\ifx&#1& \mathrm{Var} \else \underset{#1}{\mathrm{Var}} \fi \left(#2\right)}}
+
+\newcommand{\mypar}[1]{\medskip\textbf{#1}}
+
+\newcommand{\from}{:}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\polylog}{\mathrm{polylog}}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\ind}{\mathbb{I}}
+\newcommand{\pmo}{\{\pm 1\}}
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\bit}[1]{{\zo^{#1}}}
+\newcommand{\cond}[1]{\vert_{#1}}
+\newcommand{\norm}[2]{\|#1\|_{#2}}
+\newcommand{\abs}[1]{{\left | {#1} \right|}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nicehalf}{\nicefrac{1}{2}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\cardset}[1]{\left| \set{#1} \right|}
+\newcommand{\paren}[1]{{\left ( {#1} \right)}}
+\newcommand{\bparen}[1]{{\big( {#1} \big)}}
+\newcommand{\Bparen}[1]{{\Big( {#1} \Big)}}
+\newcommand{\bracket}[1]{{\left [ {#1} \right]}}
+\newcommand{\ip}[1]{{\left \langle {#1} \right\rangle }}
+
+\newcommand{\distance}{\mathrm{d}}
+\newcommand{\dtv}{\distance_{\mathrm{TV}}}
+\newcommand{\dkl}{\distance_{\mathrm{KL}}}
+\newcommand{\dhe}{\distance_{\mathrm{H^2}}}
+\newcommand{\dcs}{\distance_{\mathrm{\chi^2}}}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\defeq}{\stackrel{{\mbox{\tiny def}}}{=}}
+
+\newtheorem{thm}{Theorem}
+    \newtheorem{clm}[thm]{Claim}
+    \newtheorem{lem}[thm]{Lemma}
+    \newtheorem{prop}[thm]{Proposition}
+    \newtheorem{cor}[thm]{Corollary}
+    \newtheorem{fact}[thm]{Fact}
+    \newtheorem{claim}[thm]{Claim}
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+    \newtheorem{example}[thm]{Example}
+    \newtheorem{rem}[thm]{Remark}
+    \newtheorem{exer}[thm]{Exercise}
+
+\newcommand{\HWtitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS7800: Advanced Algorithms \hfill Fall 2025} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1: Due {#2}} \\[1em] {\bfseries \large Jonathan Ullman}\\[1ex] \end{figure}}
+
+\newcommand{\HWsoltitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS7800: Advanced Algorithms \hfill Fall 2025} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1 Solutions} \\[1em] {\bfseries \large Jonathan Ullman}\\[1ex] \end{figure}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%  Title  %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\HWtitle{3}{Friday October 2, 2025}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Beginning  %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\labelenumii}{{\bfseries \em \arabic{enumi}.\arabic{enumii}}}
+\newcommand{\problemitem}{\renewcommand{\labelenumi}{{\bfseries \em Problem \arabic{enumi}}}\item}
+\newcommand{\solutionitem}{\renewcommand{\labelenumi}{{\bfseries \em Solution \arabic{enumi}}}\addtocounter{enumi}{-1}\item}
+
+\noindent\textbf{\color{blue} \Large Assigned Problems (Collected and Graded)}
+\begin{enumerate}[leftmargin=0pt]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problemitem Let $G = (V,E,\{c_e\})$ be a network with integer edge capacities.  We say that an edge $e$ is \emph{flow-enhancing} if increasing
+its capacity by 1 also increases the value of the maximum flow in $G$. Similarly, an edge $s$ is
+\emph{flow-reducing} if decreasing its capacity by 1 also decreases the value of the maximum flow
+in $G$.
+\begin{enumerate}[leftmargin=0pt, itemsep=3ex]
+\item Does every network $G$ have at least one flow-enhancing edge?  Either prove that the answer is yes or give  a counterexample.
+
+\item Describe and analyze an algorithm to find all flow-enhancing edges in $G$, given both $G$ and a
+maximum flow in $G$ as input.\footnote{Hint: Suppose $f$ is a maximum flow in $G$, and $G_{f}$ is the residual graph corresponding to $f$.  What must be true about $G_f$ if the edge $e$ is flow-enhancing/flow-reducing? \label{footnote1}}  Your algorithm should run in at most $O(m^2)$ time\footnote{Note that there is a trivial algorithm that recomputes the maximum flow after increasing/decreasing each of the $m$ edges, which takes $m \times O(nm) = O(nm^2)$ time.  Your algorithm should run faster than this baseline. \label{footnote2}} for full credit, but for a challenge try to do better.
+
+\item Prove that an edge is flow-enhancing \emph{if and only if} it appears in \emph{every} minimum cut of the graph $G$.
+
+\item Does every network $G$ have at least one flow-reducing edge?  Either prove that the answer is yes or give  a counterexample.
+
+\item Describe and analyze an algorithm to find all flow-reducing edges in $G$, given both $G$ and a
+maximum flow in $G$ as input.\textsuperscript{\ref{footnote1}}  Your algorithm should run in at most $O(m^2)$ time\textsuperscript{\ref{footnote2}} for full credit, but for a challenge try to do better.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{3ex}
+\noindent\textbf{\color{red} \Large Optional Problems (Collected and Graded)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problemitem {\color{red} I am not assigning this problem because it's a bit open ended and there are some fiddly technical details in order to get a perfectly correct solution, but I think it's a really good problem to work on.}
+
+Suppose that instead of capacities, we consider networks where each edge $e$ has some non-negative, integer-valued \emph{demand} $d(e) \geq 0$.  We say that an $(s,t)$-flow $f$ is \emph{feasible} if $f(e) \geq d(e)$ for every edge $e$, in addition to satisfying the flow-conservation constraints.  A natural problem in this setting is to find a feasible flow of \emph{minimum} value.
+\begin{enumerate}[leftmargin=0pt, itemsep=1ex]
+	\item Describe an efficient algorithm to compute a \emph{feasible} $(s,t)$-flow.  That is, one that satisfies flow conservation and demand constraints, but is not necessarily of minimum value.  Justify your algorithm's correctness, and analyze its running time.
+	
+	\item Suppose you have access to a subroutine $\textsc{MaxFlow}$ that solves the maximum $s$-$t$-flow problem. Describe an efficient algorithm to compute a minimum flow in a network with edge demands.  Your algorithm should call $\textsc{MaxFlow}$ exactly once.\footnote{\textbf{Hint:} Start with the feasible $(s,t)$-flow your algorithm finds in 4.1 and try to \emph{remove} as much flow as possible while still satisfying the demands.}  Justify that your algorithm is correct and analyze its running time, including the time required to execute $\textsc{MaxFlow}$.
+
+    \item In this problem you might guess that there is a \emph{min-flow/max-cut} theorem, where the value of the minimum flow is equal to the demand of the maximum cut.  Show that this theorem is \emph{false}.  That is, draw a graph where there is a cut with some total demand $D$ but also a flow satisfying all the demand constraints with value $F < D$.
+    
+	\item State and prove an analogue of the max-flow/min-cut theorem for this setting.  That is, express the value of the minimum flow in terms of something about the cuts in the graph.
+\end{enumerate}
+
+\end{enumerate}
+\end{document}
