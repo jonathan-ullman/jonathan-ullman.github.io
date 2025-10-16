@@ -1,0 +1,283 @@
+\documentclass[11pt]{article}
+
+
+\newcommand{\E}{\mathbb{E}}
+\usepackage[table,xcdraw]{xcolor}
+% set this flag to 0 to remove comments
+\def\comments{1}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bbm}
+\usepackage{paralist}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{authblk}
+	\renewcommand{\Authsep}{\qquad}
+	\renewcommand{\Authand}{\qquad}
+	\renewcommand{\Authands}{\qquad}
+	\renewcommand\Affilfont{\itshape\small}
+\usepackage[left=1.25in,right=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\usepackage[bookmarks=false]{hyperref}
+    \hypersetup{
+        linktocpage=true,
+        colorlinks=true,				
+        linkcolor=DarkBlue,				
+        citecolor=DarkBlue,				
+        urlcolor=DarkBlue,			
+    }
+\usepackage[tt=false]{libertine}
+    \usepackage[libertine]{newtxmath}
+    \usepackage[T1]{fontenc}
+    \renewcommand{\baselinestretch}{1.00}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{nicefrac}
+\usepackage{tikz}
+	\usetikzlibrary{positioning}
+	\definecolor{DarkGreen}{rgb}{0.2,0.6,0.2}
+	\definecolor{DarkRed}{rgb}{0.6,0.2,0.2}
+	\definecolor{DarkBlue}{rgb}{0.2,0.2,0.6}
+	\definecolor{DarkPurple}{rgb}{0.4,0.2,0.4}   
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{framed}
+% \usepackage{ulem}
+% \normalem
+
+   
+% comments
+\setlength\marginparwidth{62pt}
+\setlength\marginparsep{5pt}
+\ifnum\comments=1
+    \newcommand{\mynote}[2]{{\marginpar{\color{#1}\sf \tiny #2}}}
+    \newcommand{\mynoteinline}[2]{{\color{#1} \sf \small #2}}
+\else
+\newcommand{\mynote}[2]{}
+    \newcommand{\mynoteinline}[2]{}
+\fi
+\newcommand{\jnote}[1]{\mynote{blue}{JU: #1}}
+\newcommand{\as}[1]{\mynote{red}{ADS: #1}}
+\newcommand{\anote}{\as}
+\newcommand{\asinline}[1]{\mynoteinline{red}{ADS: #1}}
+
+\renewcommand{\epsilon}{\eps}
+
+% fixing left-right spacing
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+% math macros
+\newcommand{\ex}[2]{{\ifx&#1& \mathbb{E} \else \underset{#1}{\mathbb{E}} \fi \left(#2\right)}}
+\newcommand{\pr}[2]{{\operatorname*{\mathbb{P}}_{#1} \paren{#2}}}
+\newcommand{\var}[2]{{\ifx&#1& \mathrm{Var} \else \underset{#1}{\mathrm{Var}} \fi \left(#2\right)}}
+
+\newcommand{\mypar}[1]{\medskip\textbf{#1}}
+
+\newcommand{\from}{:}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\polylog}{\mathrm{polylog}}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\ind}{\mathbb{I}}
+\newcommand{\pmo}{\{\pm 1\}}
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\bit}[1]{{\zo^{#1}}}
+\newcommand{\cond}[1]{\vert_{#1}}
+\newcommand{\norm}[2]{\|#1\|_{#2}}
+\newcommand{\abs}[1]{{\left | {#1} \right|}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nicehalf}{\nicefrac{1}{2}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\cardset}[1]{\left| \set{#1} \right|}
+\newcommand{\paren}[1]{{\left ( {#1} \right)}}
+\newcommand{\bparen}[1]{{\big( {#1} \big)}}
+\newcommand{\Bparen}[1]{{\Big( {#1} \Big)}}
+\newcommand{\bracket}[1]{{\left [ {#1} \right]}}
+\newcommand{\ip}[1]{{\left \langle {#1} \right\rangle }}
+
+\newcommand{\distance}{\mathrm{d}}
+\newcommand{\dtv}{\distance_{\mathrm{TV}}}
+\newcommand{\dkl}{\distance_{\mathrm{KL}}}
+\newcommand{\dhe}{\distance_{\mathrm{H^2}}}
+\newcommand{\dcs}{\distance_{\mathrm{\chi^2}}}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\defeq}{\stackrel{{\mbox{\tiny def}}}{=}}
+
+\newtheorem{thm}{Theorem}
+    \newtheorem{clm}[thm]{Claim}
+    \newtheorem{lem}[thm]{Lemma}
+    \newtheorem{prop}[thm]{Proposition}
+    \newtheorem{cor}[thm]{Corollary}
+    \newtheorem{fact}[thm]{Fact}
+    \newtheorem{claim}[thm]{Claim}
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+    \newtheorem{example}[thm]{Example}
+    \newtheorem{rem}[thm]{Remark}
+    \newtheorem{exer}[thm]{Exercise}
+
+
+\newcommand{\HWtitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS7800: Advanced Algorithms \hfill Fall 2025} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1: Due {#2}} \\[1em] {\bfseries \large Jonathan Ullman}\\[1ex] \end{figure}}
+
+\newcommand{\HWsoltitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS7800: Advanced Algorithms \hfill Fall 2025} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1 Solutions} \\[1em] {\bfseries \large Jonathan Ullman}\\[1ex] \end{figure}}
+
+\usepackage{halloweenmath}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%  Title  %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\HWtitle{4}{Friday October 31, 2025 $\bigpumpkin$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Beginning  %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\labelenumii}{{\bfseries \em \arabic{enumi}.\arabic{enumii}}}
+\newcommand{\problemitem}{\renewcommand{\labelenumi}{{\bfseries \em Problem \arabic{enumi}}}\item}
+\newcommand{\solutionitem}{\renewcommand{\labelenumi}{{\bfseries \em Solution \arabic{enumi}}}\addtocounter{enumi}{-1}\item}
+
+\noindent\textbf{\color{blue} Assigned Problems (Collected and Graded)}
+\begin{enumerate}[leftmargin=0pt]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problemitem
+Recall the Bake-Sale Problem from HW2.  You need to staff an event from time $0$ until time $T$.  Each of $n$ parents gave you a window of time $[s_i,f_i)$ that they are available.  (\emph{Note that we changed the problem slightly so that the parents' intervals do not include the time $f_i$.  Parents are busy and will skip out a few seconds early if they can.})  Your goal is to find the smallest set of parents $S \subseteq \{1,\dots,n\}$ such that $\bigcup_{i \in S} [s_i, f_i) \supseteq [0,T]$.  You may assume that all values $s_1,f_1,\dots,s_n,f_n$ are distinct and that using all $n$ parents would successfully staff the event.  In this question we'll take a fresh look at this problem using linear programming.
+
+\begin{enumerate}[leftmargin=0pt, itemsep=1ex]
+    \item Show that there exists some finite set of points $W \subseteq [0,T]$ such that any set of parents that can staff the table at every time in $W$ can also staff the table for all of $[0,T]$.
+    
+    \item Formulate the Bake-Sale Problem as a linear program with decision variables $x_1,\dots,x_n$ where $x_i$ indicates whether or not parent $i$ is used in the solution.
+    
+    \item Write the dual of your LP.
+    
+    \item Write an interpretation of the dual LP.
+    
+    \item In HW2 we proved that there is a greedy algorithm that solves this problem optimally.  Use this fact to orove that both the LP and its dual have optimal solutions where every decision variable is an \emph{integer}.
+\end{enumerate}
+
+\problemitem
+In this problem we will see how some optimization problems that don't look like linear programs can be expressed as linear programs with a bit of effort.
+\begin{enumerate}[leftmargin=0pt, itemsep=1ex]
+    \item Consider the optimization problem
+    \begin{align*}
+    \min_{x \in \R^n}   &|x_1|+|x_2|+\dots+|x_n| \\
+    \text{s.t. }        &Ax \leq b\\
+                        &x \geq 0
+    \end{align*}
+    {\bfseries Rewrite this optimization problem as a linear program.  Be sure to specify the decision variables, objective, and constraints for your new liner program.}
+
+    \item Consider the optimization problem
+    \begin{align*}
+    \min_{x \in \R^n}   &\max\{x_1,x_2,\dots,x_n\} \\
+    \text{s.t. }        &Ax \leq b\\
+                        &x \geq 0
+    \end{align*}
+    {\bfseries Rewrite this optimization problem as a linear program.  Be sure to specify the decision variables, objective, and constraints for your new liner program.}
+\end{enumerate}
+
+\problemitem
+Suppose we are the brewery we've pondered in class, and we have the ability to obtain more resources, and which will change the constraints of our optimization problem and hopefully allow us to make more money.  In this problem we will see how the dual of the linear program gives useful information about the \emph{value} of adding more resources, and the relative value between different resources.
+
+Consider a linear program of the form
+\begin{align*}
+    \max_{x \in \R^n}~~   &c^\top x \\
+    \text{s.t. }        &Ax \leq b\\
+                        &x \geq 0
+\end{align*}
+and it's dual
+\begin{align*}
+    \min_{y \in \R^m}~~   &b^\top y \\
+    \text{s.t. }        &A^\top y \geq c\\
+                        &y \geq 0
+\end{align*}
+Suppose that the primal and dual are both feasible and bounded, and let $x^\star$ be an optimal solution for the primal and $y^\star$ be an optimal solution to the dual.  Note that the optimal objective value is $$v^\star = c^\top x^\star = b^\top y^\star.$$
+
+Now, suppose we change the right-hand side of the constraints in the primal LP to get a new LP
+\begin{align*}
+    \max_{x \in \R^n}~~   &c^\top x \\
+    \text{s.t. }        &Ax \leq b + \Delta\\
+                        &x \geq 0
+\end{align*}
+for some vector $\Delta \in \R^m$.  {\bf Show that the optimal value of this new LP is \emph{at most} $v^\star + \Delta^\top y^\star.$}  Thus, the optimal dual solution tells us that if we give the brewer $\Delta_j$ one some resource $j$, the amount they can increase their profit is \emph{at most} by $\Delta_j y^\star_j$.
+
+\problemitem
+The atrium of your Tuscan villa is covered in a square grid of tiles, and the tiles make a mosaic picture like the one shown below of a maple leaf.  The floor is composed of white tiles that make the background and colored tiles that make the foreground.  You've recently come into some money and you think it would be nicer if the foreground of the mosaic (i.e.\ the maple leaf) could be replaced with gold tiles.  However, each gold tile is a rectangle that is the same width and twice as long as one of your floor tiles.  So you will need to figure out if it's possible to exactly cover the colored tiles with $2 \times 1$ tiles, and how to do it.  Each tile must be placed exactly in the location of two adjacent tiles.  For example if the tiles at the positions $(4,8)$ and $(4,9)$ are colored, you may replace both of those tiles with one gold tile.  For this problem, you may assume that the mosaic is represented by an $n \times n$ array $A$ where $A[i,j] = 1$ if the tile in position $(i,j)$ is colored or $A[i,j] = 0$ if it is white.
+
+{\bf Using a reduction to bipartite matching, design an efficient algorithm that either finds a way to cover the foreground of the picture or returns that it is not possible to do so.}  In your solution be sure to specify:
+\begin{itemize}
+    \item The input and output for the bipartite matching algorithm you are using.
+    \item How you map the input to the tiling problem into an input to bipartite matching.
+    \item How you map the output of the matching algorithm into an output for the tiling problem.
+    \item A justification (either a formal proof or an informal but convincing argument) of why your reduction is correct.
+    \item An analysis of the running time of your entire algorithm, including the time needed to run the bipartite matching algorithm.
+\end{itemize}
+
+\begin{center}
+\includegraphics[scale=0.5]{aa.png}
+\end{center}
+
+\noindent\textbf{\color{red} Optional Problems (Not Collected and Not Graded)}
+
+In general, I think the \href{https://jeffe.cs.illinois.edu/teaching/algorithms/}{online Jeff Erickson book} has tons of good exercises on linear programming (Chapter H) and applications of network flow algorithms (Chapter 11) 
+
+\begin{enumerate}[leftmargin=0pt]
+\item Erickson book Chapter 11 Problem 4.  {\color{red} I wanted to keep the assigned problems to a reasonable level, but I highly recommend this one as an example of a reduction that naturally uses \emph{minimum cut} as opposed to \emph{maximum flow}, which is something you want to be able to do for exams.}
+
+\item Erickson book Chapter H, Problems 4, 9, 10.
+
+\item Erickson book Chapter 11, Problems 12, 13, 16.
+
+\item For a challenge, try Erickson book Chapter 11, Problem 11.
+\end{enumerate}
+
+\end{enumerate}
+\end{document}
