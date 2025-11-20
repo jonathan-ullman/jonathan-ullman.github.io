@@ -1,0 +1,292 @@
+\documentclass[11pt]{article}
+
+
+\newcommand{\E}{\mathbb{E}}
+\usepackage[table,xcdraw]{xcolor}
+% set this flag to 0 to remove comments
+\def\comments{1}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bbm}
+\usepackage{paralist}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{authblk}
+	\renewcommand{\Authsep}{\qquad}
+	\renewcommand{\Authand}{\qquad}
+	\renewcommand{\Authands}{\qquad}
+	\renewcommand\Affilfont{\itshape\small}
+\usepackage[left=1.25in,right=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\usepackage[bookmarks=false]{hyperref}
+    \hypersetup{
+        linktocpage=true,
+        colorlinks=true,				
+        linkcolor=DarkBlue,				
+        citecolor=DarkBlue,				
+        urlcolor=DarkBlue,			
+    }
+\usepackage[tt=false]{libertine}
+    \usepackage[libertine]{newtxmath}
+    \usepackage[T1]{fontenc}
+    \renewcommand{\baselinestretch}{1.00}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{nicefrac}
+\usepackage{tikz}
+	\usetikzlibrary{positioning}
+	\definecolor{DarkGreen}{rgb}{0.2,0.6,0.2}
+	\definecolor{DarkRed}{rgb}{0.6,0.2,0.2}
+	\definecolor{DarkBlue}{rgb}{0.2,0.2,0.6}
+	\definecolor{DarkPurple}{rgb}{0.4,0.2,0.4}   
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{framed}
+% \usepackage{ulem}
+% \normalem
+
+   
+% comments
+\setlength\marginparwidth{62pt}
+\setlength\marginparsep{5pt}
+\ifnum\comments=1
+    \newcommand{\mynote}[2]{{\marginpar{\color{#1}\sf \tiny #2}}}
+    \newcommand{\mynoteinline}[2]{{\color{#1} \sf \small #2}}
+\else
+\newcommand{\mynote}[2]{}
+    \newcommand{\mynoteinline}[2]{}
+\fi
+\newcommand{\jnote}[1]{\mynote{blue}{JU: #1}}
+\newcommand{\as}[1]{\mynote{red}{ADS: #1}}
+\newcommand{\anote}{\as}
+\newcommand{\asinline}[1]{\mynoteinline{red}{ADS: #1}}
+
+\renewcommand{\epsilon}{\eps}
+
+% fixing left-right spacing
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+% math macros
+\newcommand{\ex}[2]{{\ifx&#1& \mathbb{E} \else \underset{#1}{\mathbb{E}} \fi \left(#2\right)}}
+\newcommand{\pr}[2]{{\operatorname*{\mathbb{P}}_{#1} \paren{#2}}}
+\newcommand{\var}[2]{{\ifx&#1& \mathrm{Var} \else \underset{#1}{\mathrm{Var}} \fi \left(#2\right)}}
+
+\newcommand{\mypar}[1]{\medskip\textbf{#1}}
+
+\newcommand{\from}{:}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\polylog}{\mathrm{polylog}}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\ind}{\mathbb{I}}
+\newcommand{\pmo}{\{\pm 1\}}
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\bit}[1]{{\zo^{#1}}}
+\newcommand{\cond}[1]{\vert_{#1}}
+\newcommand{\norm}[2]{\|#1\|_{#2}}
+\newcommand{\abs}[1]{{\left | {#1} \right|}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nicehalf}{\nicefrac{1}{2}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\cardset}[1]{\left| \set{#1} \right|}
+\newcommand{\paren}[1]{{\left ( {#1} \right)}}
+\newcommand{\bparen}[1]{{\big( {#1} \big)}}
+\newcommand{\Bparen}[1]{{\Big( {#1} \Big)}}
+\newcommand{\bracket}[1]{{\left [ {#1} \right]}}
+\newcommand{\ip}[1]{{\left \langle {#1} \right\rangle }}
+
+\newcommand{\distance}{\mathrm{d}}
+\newcommand{\dtv}{\distance_{\mathrm{TV}}}
+\newcommand{\dkl}{\distance_{\mathrm{KL}}}
+\newcommand{\dhe}{\distance_{\mathrm{H^2}}}
+\newcommand{\dcs}{\distance_{\mathrm{\chi^2}}}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\defeq}{\stackrel{{\mbox{\tiny def}}}{=}}
+
+\newtheorem{thm}{Theorem}
+    \newtheorem{clm}[thm]{Claim}
+    \newtheorem{lem}[thm]{Lemma}
+    \newtheorem{prop}[thm]{Proposition}
+    \newtheorem{cor}[thm]{Corollary}
+    \newtheorem{fact}[thm]{Fact}
+    \newtheorem{claim}[thm]{Claim}
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+    \newtheorem{example}[thm]{Example}
+    \newtheorem{rem}[thm]{Remark}
+    \newtheorem{exer}[thm]{Exercise}
+
+
+\newcommand{\HWtitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS7800: Advanced Algorithms \hfill Fall 2025} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1: Due {#2}} \\[1em] {\bfseries \large Jonathan Ullman}\\[1ex] \end{figure}}
+
+\newcommand{\HWsoltitle}[2]{\begin{figure}[t!]{\bfseries \Large \color{DarkBlue}  \noindent CS7800: Advanced Algorithms \hfill Fall 2025} \\[0.2em] {\bfseries \Large \color{DarkBlue} Homework #1 Solutions} \\[1em] {\bfseries \large Jonathan Ullman}\\[1ex] \end{figure}}
+
+\usepackage{halloweenmath}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%  Title  %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\HWtitle{6}{Friday, December 5, 2025}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  Beginning  %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\labelenumii}{{\bfseries \em \arabic{enumi}.\arabic{enumii}}}
+\newcommand{\problemitem}{\renewcommand{\labelenumi}{{\bfseries \em Problem \arabic{enumi}}}\item}
+\newcommand{\solutionitem}{\renewcommand{\labelenumi}{{\bfseries \em Solution \arabic{enumi}}}\addtocounter{enumi}{-1}\item}
+
+\noindent\textbf{\color{blue} Assigned Problems (Collected and Graded)}
+\begin{enumerate}[leftmargin=0pt]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problemitem
+Children are constantly getting too big for their clothes and toys as they grow up.  But since you never know when a future child, a friend's child, or even a grandchild might want them, you decide to put all the toys in boxes in the attic instead of throwing them out.  However, it's difficult to climb the steep ladder to the attic, so you need to make sure none of the boxes are too heavy, yet you still want to use the fewest boxes possible.  
+
+You figure this is the sort of problem that algorithms can help with.  You decide that you can carry a box as long as it weighs less than $C$ for some $C \geq 0$.  You also have $n$ items with weights $ w_1,\dots,w_n \in [0,M]$.  You'd like to find a way to allocate the items to $B$ boxes such that no box has total weight more than $C$ and $B$ is as small as possible.  Unfortunately this problem turns out to be NP-hard (you don't have to prove this fact), so you decide to try the following greedy approximation algorithm where you consider the items in order, put as many as you can in the first box, then you put as many items as you can in the second box, and so on.  More formally,
+\vspace{2pt}
+\begin{itemize}[nosep]
+    \item Let $i = 1$ and $B=0$
+    \item While $i \leq n$:
+        \begin{itemize}[nosep]
+            \item Let $B = B+1$ and open box $B$
+            \item Let $j$ be the largest value such that $w_i + \dots + w_{i+j} \leq C$
+            \item Put items $i,\dots,i+j$ in box $B$ and close box $B$
+            \item Let $i = i+j+1$
+        \end{itemize}
+\end{itemize}
+\vspace{2pt}
+
+\medskip
+In this question you will prove that this greedy algorithm is a $2$-approximation algorithm.  That is, if the smallest number of boxes that suffices to fit all $n$ items is $\mathit{OPT}$ then the greedy algorithm uses $B \leq 2 \cdot \mathit{OPT}$ boxes.
+
+\begin{enumerate}
+
+    \item Let $f_k$ be the amount of weight that the greedy algorithm puts into box $k$ for $k = 1,\dots,B$. Prove that, $f_{k} + f_{k+1} > C$ holds for every $k = 1,\dots,B-1$. 
+    
+    \item Using 2.1, prove that $\sum_{k=1}^{B} f_{k} \geq \frac{1}{2} C(B-1)$.
+
+    \item Complete the proof that the greedy algorithm uses $B \leq 2 \cdot \mathit{OPT}$ boxes.
+
+\end{enumerate}
+
+
+\problemitem
+In class we saw how to use linear programming to obtain an $O(\ln n)$-approximation to \textsc{SetCover}, but we didn't have the tools from randomized algorithms to complete the analysis, so you will now fill in the details yourselves!
+
+Recall that in \textsc{SetCover} we have a domain $\{1,\dots,n\}$ and sets $S_1,\dots,S_m \subseteq \{1,\dots,n\}$ and our goal is to find the smallest number of sets whose union covers the whole domain.  The first step in our algorithm was to solve the following \emph{fractional set cover linear program}:
+\begin{align*}
+    \min_{x_1,\dots,x_m}~~   &\sum_{j=1}^{m} x_i \\
+    \text{s.t. }        &\sum_{j : i \in S_j} x_j \geq 1~~~~\forall i = 1,\dots,n \\
+                        0 &\leq x_j \leq 1~~~~\forall j = 1,\dots,m
+\end{align*}
+Let $x^\star$ be the optimal solution to the LP.  Let $\textsc{Opt}$ be the size of the optimal set cover and $\textsc{LPOpt} = \sum_{j=1}^{m} x^{\star}_j$.  Note that $\textsc{LPOpt} \leq \textsc{Opt}$. Thus, our goal will be to round the LP to find a set cover $C$ whose size is 
+$$|C| \leq O(\ln n) \cdot \textsc{LPOpt} \leq O(\ln n) \cdot \textsc{Opt}.$$
+
+In class we used the following \emph{randomized rounding algorithm} to obtain a small set cover.
+\begin{itemize}
+    \item For $r = 1,\dots,R:$
+    \begin{itemize}
+        \item Let $C_r = \emptyset$
+        \item For $j = 1,\dots,m:$
+        \begin{itemize}
+            \item Add $S_j$ to $C_r$ with probability $x^{\star}_j$, independently from all other iterations
+        \end{itemize}
+    \end{itemize}
+    \item Return $C = C_1 \cup C_2 \cup \dots \cup C_R$
+\end{itemize}
+
+The next few questions will guide you through proving the following theorem: We can set $R = O(\ln n)$ so that the following are true: (1) the expected size of $C$ is at most $O(\ln n) \cdot \textsc{Opt}$, and (2) the probability $C$ fails to be a cover is at most $1/n$.
+
+\begin{enumerate}
+    \item Prove that for every round $r \in \{1,\dots,R\}$, $\ex{}{|C_r|} = \textsc{LPOpt}$.
+
+    \item Prove that $\ex{}{|C|} \leq R \cdot \textsc{LPOpt}$.
+
+    \item Prove that for every round $r \in \{1,\dots,R\}$, and every element $i \in \{1,\dots,n\}$ $$\pr{}{\text{$i$ is not covered by $C_{r}$}} \leq 1/e.\footnote{\textbf{Hint:} You may find it useful to use the fact that $(1-x) \leq e^{-x}$ for every $x \geq 0$.}$$
+
+    \item Prove that for every element $i \in \{1,\dots,n\}$ $$\pr{}{\text{$i$ is not covered by $C$}} \leq 1/e^R.$$
+
+    \item Prove that $$\pr{}{\text{$C$ is not a cover of $\{1,\dots,n\}$}} \leq n/e^R.$$
+
+    \item Conclude that we can set $R = K \ln n$ for some constant $K$ so that the theorem above is true.
+\end{enumerate}
+
+\problemitem 
+In this problem you will build a streaming algorithm for a very simple problem: counting the number of 1's in a string of bits.  You are given a stream of bits $x_1,\dots,x_n$ and would like to compute $s = \sum_{i=1}^{n} x_i$.  Since the sum can be as large as $n$, computing it exactly requires $\log_2 n$ bits of space.  In this problem we will see a simple algorithm that \emph{approximates} the sum with space complexity proportional to $\log \log n$.
+
+Consider the following algorithm that outputs an estimator of $s$, denoted $\tilde{s}$:
+\begin{itemize}[nosep]
+    \item Let $X = 0$
+    \item For $i = 1,\dots,n$: if $x_i = 1$ increment $X$ to $X+1$ with probability $2^{-X}$, otherwise do nothing
+    \item Return $\tilde{s} = 2^X - 1$
+\end{itemize}
+
+First we will analyze the space required to compute $\tilde{s}$.  Note that the number of bits required to store $X$ at any given time is $\log_2 X$, so we will try to argue that $\log_2 X$ does not get too big.  Then we will show that $\tilde{s}$ is a good estimate of the number of $s$
+
+\begin{enumerate}
+    \item Prove that $\mathbb{P}(\log_2 X \geq k) \leq s / 2^{2^k}$ and conclude that the expected number of bits required to store the value $X$ is $O(\log \log s)$.\footnote{\textbf{Hint:} You may find the following fact useful:  for a non-negative integer random variable $\mathbb{E}(X) = \sum_{i=1}^{\infty} \mathbb{P}(X \geq i)$.}
+
+    \item Prove by induction that $\mathbb{E}(2^X) = s+1$, so $\mathbb{E}(\tilde{s}) = s$.  You may find it helpful to use the notation $X_t$ to refer to the value of $X$ after seeing the value $1$ in the stream $t$ times.
+     
+    \item Prove that $\mathit{Var}(2^X) = O(s^2)$ where $\mathit{Var}$ denotes the \emph{variance}.
+    
+    \item Prove that when $U,V$ are \emph{independent} random variables $\mathit{Var}(U + V) = \mathit{Var}(U) + \mathit{Var}(V)$.
+    
+    \item Suppose we run $\tilde{s}$ in parallel $k$ times on the same inputs \emph{independently} to obtain $\tilde{s}_{1},\dots,\tilde{s}_{k}$, and then return the average $\bar{s}_{k} = \frac{1}{k} \sum_{j=1}^{k} \tilde{s}_{j}$.  Compute the mean and variance of $\bar{s}$.
+    
+    \item Using Chebyshev's inequality, conclude that for some constant $k$ that does not depend on $s$ or $n$, $\mathbb{P}(|\bar{s}_{k} - s| > s/100) \leq 1/100$.
+\end{enumerate}
+Putting these steps together, we have proven that we can estimate $s$ to within $\pm 1\%$ relative error using just $O(\log \log s)$ space in expectation.
+\end{enumerate}
+
+\end{document}
