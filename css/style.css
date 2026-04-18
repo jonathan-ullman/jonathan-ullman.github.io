@@ -226,6 +226,16 @@ a {
   color: #555;
 }
 
+.paper-authors a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.paper-authors a:hover {
+  color: #2E75B6;
+  text-decoration: underline;
+}
+
 .paper-venue {
   margin-top: 0;
   font-size: 0.82em;
@@ -237,6 +247,7 @@ a {
 .venue-acronym {
   font-weight: 600;     /* emphasis */
 }
+
 
 .venue-sep {
   color: #aaa;
@@ -434,6 +445,6 @@ table ol {
 	color: #2E75B6;
 }
 
-#myBtn:hover ;{
+#myBtn:hover {
 	color: #F;
 }
