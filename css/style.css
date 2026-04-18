@@ -183,36 +183,97 @@ a {
     /*font-weight: normal;*/
 }
 
-table ol {
-    margin: 0%;
-    margin-left: -1.3em;
-}
-
-.rg {
-    border-collapse: collapse;
-    text-align:left;
-    vertical-align: top;
-}
-
-.rg table, .rg th, .rg td{
-    border-bottom: 1px solid black;
-    border-collapse: collapse;
-    vertical-align: top;
-}
-
-.rg th, .rg td {
-    padding: 5px 10px;
-}
+/* ===== Papers / research ===== */
 
 .paper {
-  margin-left: 0px;
-  margin-bottom: 20px;
-  line-height: 1.5; 
+  margin: 0 0 10px 0;     /* less vertical gap between papers */
+  padding: 0 0 8px 0;
+  line-height: 1.45;
 }
 
 .paper p {
-  margin-bottom: 2px;
-  margin-left: 20px
+  margin: 0;              /* kill paragraph spacing */
+  margin-left: 0;         /* remove indent */
+}
+
+.paper p + p {
+  margin-top: 2px;        /* tiny controlled spacing */
+}
+
+.paper-title-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.paper-title {
+  font-size: 1.00em;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #222222;
+}
+
+/* tighter + smaller metadata */
+.paper-authors,
+.paper-venue {
+  font-size: 0.82em;
+  line-height: 1.25;
+}
+
+.paper-authors {
+  margin-top: 1px;
+  color: #555;
+}
+
+.paper-venue {
+  margin-top: 0;
+  font-size: 0.82em;
+  line-height: 1.25;
+  color: #666;          /* lighter, metadata feel */
+  font-weight: 400;     /* NOT bold */
+}
+
+.venue-acronym {
+  font-weight: 600;     /* emphasis */
+}
+
+.venue-sep {
+  color: #aaa;
+  margin: 0 4px;
+}
+
+.paper-note {
+    margin-top: 0;
+	padding: 2px 0px;
+    font-size: 0.72em;
+    line-height: 1.25;
+    color: #ed7d31;
+    font-weight: 600;
+}
+
+table ol {
+  margin: 0;
+  margin-left: -1.3em;
+}
+
+.rg {
+  border-collapse: collapse;
+  text-align: left;
+  vertical-align: top;
+}
+
+.rg table,
+.rg th,
+.rg td {
+  border-bottom: 1px solid black;
+  border-collapse: collapse;
+  vertical-align: top;
+}
+
+.rg th,
+.rg td {
+  padding: 7px 10px;
 }
   
 .divider {
@@ -293,50 +354,44 @@ table ol {
 	font-weight: bold;
 }
 
-#label-preprint {
-	background:    #CC0000;
-	border-radius: 5px;
-	padding: 	   2px 10px;
-	height:        18px;
-	color:         #ffffff;
-	display:       inline-block;
-	font:          normal bold 11px/17px "Noto Sans", sans-serif;
-	text-align:    center;
+#label-preprint,
+#label-code,
+#label-talk,
+#label-misc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+
+  min-height: 20px;
+  padding: 0 10px;
+  border-radius: 999px;
+
+  color: #ffffff;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+
+  margin-left: 4px;
+  white-space: nowrap;
 }
 
-#label-code {
-	background:    #ED7D31;
-	border-radius: 5px;
-	padding: 	   2px 10px;
-	height:        18px;
-	color:         #ffffff;
-	display:       inline-block;
-	font:          normal bold 11px/17px "Noto Sans", sans-serif;
-	text-align:    center;
+#label-preprint {
+  background: #ED7D31;   /* orange */
 }
 
 #label-talk {
-	background:    #2E75B6;
-	border-radius: 5px;
-	padding: 	   2px 10px;
-	height:        18px;
-	color:         #ffffff;
-	display:       inline-block;
-	font:          normal bold 11px/17px "Noto Sans", sans-serif;
-	text-align:    center;
+  background: #2E75B6;   /* blue */
 }
 
-#label-misc{
-	background:    #666666;
-	border-radius: 5px;
-	padding: 	   2px 10px;
-	height:        18px;
-	color:         #ffffff;
-	display:       inline-block;
-	font:          normal bold 11px/17px "Noto Sans", sans-serif;
-	text-align:    center;
+#label-code {
+  background: #4F6D8A;   /* blue-gray */
 }
 
+#label-misc {
+  background: #7A8CA5;   /* lighter blue-gray */
+}
 /* The Modal (background) */
 .modal {
 	display: none; /* Hidden by default */
