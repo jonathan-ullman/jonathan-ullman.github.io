@@ -84,7 +84,7 @@ h5 {
   font-size: 1.8rem;
   line-height: 1.5;
   letter-spacing: -.05rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.4rem;
 }
 
 h6 {
@@ -489,3 +489,55 @@ table ol {
   }
 }
 
+.people-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.person-entry {
+  margin-bottom: 1.2rem;
+}
+
+
+.person-main {
+  font-weight: 600;
+  font-size: 1.0em;   /* slightly larger than body */
+  line-height: 1.25;
+}
+
+.person-meta {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.82em;  /* smaller than name */
+  line-height: 1.25;
+}
+
+.person-note {
+  margin-top: 2px;
+  color: var(--accent);
+  font-size: 0.72em;   /* smallest */
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.person-main a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.person-main a:hover {
+  color: var(--link-hover);
+}
+
+.student-note {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(237, 125, 49, 0.12);
+  color: var(--accent);
+  font-size: 0.8em;
+  font-weight: 700;
+  vertical-align: middle;
+}
