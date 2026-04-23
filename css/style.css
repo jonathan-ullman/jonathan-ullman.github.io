@@ -397,34 +397,26 @@ table ol {
 
 #news li {
   display: grid;
-  grid-template-columns: 4em 1fr;
+  grid-template-columns: 5em 1fr;
   column-gap: 8px;
   align-items: baseline;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.8rem;
 }
 
 .date {
   display: block;
   color: var(--accent);
-  font-size: 0.72em;
+  font-size: 0.78em;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.35;
 }
 
 .news-text {
   display: block;
   min-width: 0;
-  line-height: 1.5;
+  line-height: 1.35;
   font-size:1em;
 }
-
-.date,
-.news-text {
-  display: block;
-  line-height: 1.5;
-}
-
-
 
 #nav-name {
   color: var(--link);
