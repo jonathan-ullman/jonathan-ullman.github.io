@@ -85,6 +85,7 @@ h5 {
   line-height: 1.5;
   letter-spacing: -.05rem;
   margin-bottom: 1.4rem;
+  font-weight: 600;
 }
 
 h6 {
@@ -247,7 +248,7 @@ a {
 
 .paper-title {
   font-size: 1em;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.25;
   color: var(--text);
 }
@@ -397,7 +398,7 @@ table ol {
 #news li {
   display: grid;
   grid-template-columns: 4em 1fr;
-  column-gap: 10px;
+  column-gap: 8px;
   align-items: baseline;
   margin-bottom: 0.35rem;
 }
@@ -405,8 +406,8 @@ table ol {
 .date {
   display: block;
   color: var(--accent);
-  font-size: 0.75em;
-  font-weight: 700;
+  font-size: 0.72em;
+  font-weight: 600;
   line-height: 1.5;
 }
 
@@ -414,6 +415,7 @@ table ol {
   display: block;
   min-width: 0;
   line-height: 1.5;
+  font-size:1em;
 }
 
 .date,
@@ -501,7 +503,7 @@ table ol {
 
 
 .person-main {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1.0em;   /* slightly larger than body */
   line-height: 1.25;
 }
@@ -522,12 +524,13 @@ table ol {
 }
 
 .person-main a {
-  color: var(--link);
+  color: var(--text);        /* black by default */
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 .person-main a:hover {
-  color: var(--link-hover);
+  color: var(--link);        /* blue on hover */
 }
 
 .student-note {
