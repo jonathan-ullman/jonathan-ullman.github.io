@@ -400,7 +400,7 @@ table ol {
   grid-template-columns: 5em 1fr;
   column-gap: 8px;
   align-items: baseline;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
 }
 
 .date {
