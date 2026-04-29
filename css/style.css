@@ -364,7 +364,7 @@ table ol {
 .on a {
   background-color: rgba(46, 117, 182, 0.12);
   color: var(--link);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 #empty {
