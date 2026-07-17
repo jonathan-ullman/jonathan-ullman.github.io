@@ -1,0 +1,133 @@
+.nav {
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 0 max(24px, calc((100% - 1020px) / 2));
+  box-sizing: border-box;
+}
+
+.nav #nav-name {
+  margin-right: auto;
+  white-space: nowrap;
+}
+
+.course-header {
+  margin: 3.5rem 0 3rem;
+  padding: 0;
+}
+
+.course-header h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: 3.4rem;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.instructor {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.instructor img {
+  width: 150px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.instructor h2 {
+  margin: 0 0 0.8rem;
+  color: var(--link);
+  font-size: 2.2rem;
+  letter-spacing: 0;
+}
+
+.instructor p:last-child {
+  color: var(--muted);
+  font-size: 1.35rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.schedule {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.schedule th,
+.schedule td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #d8d8d8;
+  vertical-align: top;
+}
+
+.schedule th {
+  color: var(--text);
+  background: var(--nav-bg);
+  border-bottom: 2px solid var(--link);
+  font-weight: 700;
+}
+
+.schedule th:first-child,
+.schedule td:first-child {
+  width: 5rem;
+  text-align: center;
+}
+
+.schedule th:nth-child(2),
+.schedule td:nth-child(2) {
+  width: 9rem;
+}
+
+.schedule td {
+  min-height: 2.5rem;
+  height: 2.5rem;
+}
+
+.schedule tbody tr:hover {
+  background: #fafafa;
+}
+
+@media (max-width: 700px) {
+  .nav {
+    gap: 4px;
+    padding: 0 10px;
+    overflow-x: auto;
+  }
+
+  #nav-name {
+    max-width: 48%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav a {
+    white-space: nowrap;
+    padding: 6px 8px;
+  }
+
+  .course-header {
+    margin-top: 2rem;
+  }
+
+  .course-header h1 {
+    font-size: 2.8rem;
+  }
+
+  .instructor {
+    align-items: flex-start;
+  }
+
+  .instructor img {
+    width: 110px;
+    height: 145px;
+  }
+}
