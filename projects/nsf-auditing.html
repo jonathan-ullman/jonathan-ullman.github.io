@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+	
+	<title>
+		Auditing Private Statistical and Machine Learning Algorithms: Theory and Practice
+	</title>
+</head>
+
+<body>
+    
+<h2>CNS-2247484 SaTC: CORE: Small: Auditing Private Statistical and Machine Learning Algorithms: Theory and Practice</h2>	
+	
+<h4>Project Abstract</h4>
+	
+	<p>The use of statistics and machine learning to analyze sensitive data poses serious privacy risks to users who contribute their data to these algorithms, including: data reconstruction (revealing large portions of the training data), membership inference (revealing the presence of specific individuals in the training data), and data memorization (revealing specific training examples). Differential privacy has now become the standard for protecting data privacy in machine learning and statistics, as it offers a strong, formal, and quantitative guarantee of individual privacy. However, for many deployments of differential privacy there remains a significant gap between the formal guarantees and expectations in practice, and this project aims to bridge this gap by auditing deployed algorithms to discover and explain their privacy properties. The project's novelties are building the theoretical foundations of privacy auditing and designing empirical methods that measure the privacy leakage of private algorithms in real-world scenarios. The project's broader significance and importance will be in specific recommendations to practitioners on choice and use of private algorithms, and an understanding of the potential privacy violations for specific machine learning applications. The project team has expertise in differential privacy, machine learning, and cybersecurity, and plans a set of education tasks and outreach activities: public course materials on trustworthy machine learning and privacy, mentoring undergraduate and graduate students in research projects, and collaboration with industry partners.</p>
+
+	<p>This project includes three interconnected thrusts addressing different aspects of privacy auditing. The first thrust lays the theoretical foundation of privacy auditing by developing optimal membership inference attacks with stronger guarantees than previous work. The second thrust introduces novel methods for auditing convex machine learning models and neural networks, by using insights from poisoning attacks developed in adversarial machine learning. The final thrust designs tools for auditing end-to-end privacy leakage of machine learning models trained under the continual-learning paradigm. These research thrusts enable a suite of techniques for auditing private algorithms, with the goal of providing guidance to practitioners on how to select private algorithms and their parameters to balance the utility and privacy guarantees on tasks of interest.</p>
+	
+<h4>People</h4>
+
+<ul>
+	<li><a href="https://www.khoury.northeastern.edu/home/alina/">Alina Oprea</a>, Northeastern University, PI</li>
+	<li><a href="https://jonathan-ullman.github.io/">Jonathan Ullman</a>, Northeastern University, PI</li>
+	<li><a href="https://johnabascal.com/">John Abascal</a>, Northeastern University, PhD Student</li>
+	<li><a href="https://harshch1803.github.io/">Harsh Chaudhari</a>, Northeastern University, PhD Student</li>
+	<li><a href="https://lisaoakley.github.io/">Lisa Oakley</a>, Northeastern University, PhD Student</li>
+	<li><a href="https://severi.xyz/">Giorgio Severi</a>, Northeastern University, PhD Student</li>
+	<li><a href="https://architecture.fail/">Nico Berrios</a>, Catholic University of Chile, Undergraduate (now a PhD student at Georgia Institute of Technology)</li>
+	<li><a href="https://stanley-wu.com/">Stanley Wu</a>, Northeastern University, Undergraduate (now a PhD student at University of Chicago)</li>
+</ul>
+
+<h4>Publications</h4>
+
+	<strong>The Sample Complexity of Membership Inference and Privacy Auditing</strong>
+	<a href="https://arxiv.org/abs/2508.19458"><span id="label-preprint">arXiv</span></a><br/>
+	<a href="https://mhaghifam.github.io/mahdihaghifam//">Mahdi Haghifam</a>,
+	<a href="http://cs-people.bu.edu/ads22/">Adam Smith</a>, and
+	<a href="https://jonathan-ullman.github.io/">Jonathan Ullman</a><br/>
+	IEEE Symposium on Foundations of Computer Science <strong>(FOCS '26)</strong><br/>
+	<br/>
+
+	<strong>Black-Box Privacy Attacks on Shared Representations in Multitask Learning</strong>
+	<a href="https://arxiv.org/abs/2506.16460"><span id="label-preprint">arXiv</span></a><br/>
+	<a href="http://www.johnabascal.com/">John Abascal</a>,
+	<a href="https://architecture.fail/">Nicolás Berrios</a>,
+	<a href="https://www.ccs.neu.edu/home/alina/">Alina Oprea</a>,
+	<a href="https://jonathan-ullman.github.io/">Jonathan Ullman</a>,
+	<a href="http://cs-people.bu.edu/ads22/">Adam Smith</a>, and
+	<a href="https://jagielski.github.io/">Matthew Jagielski</a> (contribution order)<br/>
+	International Conference on Learning Representations <strong>(ICLR '26)</strong><br/>
+	<br/>
+
+	<strong>Lower Bounds for Public-Private Learning Under Distribution Shift</strong>
+	<a href="https://arxiv.org/abs/2507.17895"><span id="label-preprint">arXiv</span></a><br/>
+	<a href="https://ars22.github.io/">Amrith Setlur</a>,
+	<a href="https://cs.stanford.edu/~prthaker/">Pratiksha Thaker</a>, and
+	<a href="https://jonathan-ullman.github.io/">Jonathan Ullman</a><br/>
+	International Conference on Artificial Intelligence and Statistics <strong>(AISTATS '26)</strong><br/>
+	<br/>
+
+	<strong>A Bias-Variance-Privacy Trilemma for Statistical Estimation</strong>
+	<a href="https://arxiv.org/abs/2301.13334"><span id="label-preprint">arXiv</span></a><br/>
+	<a href="http://www.gautamkamath.com/">Gautam Kamath</a>,
+	<a href="https://argymouz.github.io/">Argyris Mouzakis</a>,
+	<a href="https://thesalon.github.io/author/matthew-regehr/">Matthew Regehr</a>,
+	<a href="http://www.ccs.neu.edu/home/vikrantsinghal/">Vikrant Singhal</a>,
+	<a href="http://www.thomas-steinke.net/">Thomas Steinke</a>, and
+	<a href="https://jonathan-ullman.github.io/">Jonathan Ullman</a><br/>
+	<strong>Journal of the American Statistical Association '25</strong><br/>
+	<br/>
+
+	<strong>Privacy in Metalearning and Multitask Learning: Modeling and Separations</strong>
+	<a href="https://arxiv.org/abs/2412.12374"><span id="label-preprint">arXiv</span></a><br/>
+	<a href="https://maryamaliakbarpour.com/">Maryam Aliakbarpour</a>,
+	<a href="https://konstantinabrk.github.io/">Konstantina Bairaktari</a>,
+	<a href="http://cs-people.bu.edu/ads22/">Adam Smith</a>,
+	<a href="https://sites.google.com/bu.edu/marika/home">Marika Swanberg</a>, and
+	<a href="https://jonathan-ullman.github.io/">Jonathan Ullman</a><br/>
+	International Conference on Artificial Intelligence and Statistics <strong>(AISTATS '25)</strong><br/>
+	<br/>
+
+	<strong>Private Mean Estimation with Person-Level Differential Privacy</strong>
+	<a href="https://arxiv.org/abs/2405.20405"><span id="label-preprint">arXiv</span></a><br/>
+	<a href="https://sushaga.github.io/">Sushant Agarwal</a>,
+	<a href="http://www.gautamkamath.com/">Gautam Kamath</a>,
+	<a href="https://www.mahbodmajid.com/">Mahbod Majid</a>,
+	<a href="https://argymouz.github.io/">Argyris Mouzakis</a>,
+	<a href="https://rosesilver.github.io/">Rose Silver</a>, and
+	<a href="https://jonathan-ullman.github.io/">Jonathan Ullman</a><br/>
+	ACM-SIAM Symposium on Discrete Algorithms <strong>(SODA '25)</strong><br/>
+	<br/>
+
+	<strong>Private Geometric Median</strong>
+	<a href="https://arxiv.org/abs/2406.07407"><span id="label-preprint">arXiv</span></a><br/>
+	<a href="https://mhaghifam.github.io/mahdihaghifam//">Mahdi Haghifam</a>,
+	<a href="http://www.thomas-steinke.net/">Thomas Steinke</a>, and
+	<a href="https://jonathan-ullman.github.io/">Jonathan Ullman</a><br/>
+	Conference on Neural and Information Processing Systems <strong>(NeurIPS '24)</strong><br/>
+	<br/>
+
+	<strong>Metalearning with Very Few Samples Per Task</strong>
+	<a href="https://arxiv.org/abs/2312.13978"><span id="label-preprint">arXiv</span></a><br/>
+	<a href="https://www.mit.edu/~maryama/">Maryam Aliakbarpour</a>,
+	<a href="https://konstantinabrk.github.io/">Konstantina Bairaktari</a>,	
+	<a href="https://cs-people.bu.edu/grbrown/">Gavin Brown</a>, 
+	<a href="https://cs-people.bu.edu/ads22/">Adam Smith</a>, and
+	Jonathan Ullman<br/>
+	Conference on Learning Theory <strong>(COLT '24)</strong><br/>
+	<br/>
+
+	<strong>TMI! Finetuned Models Leak Private Information from their Pretraining Data</strong>
+	<a href="https://arxiv.org/abs/2306.01181"><span id="label-preprint">arXiv</span></a><br/>
+	<a href="http://www.johnabascal.com/">John Abascal</a>,	
+	<a href="">Stanley Wu</a>,
+	<a href="https://www.ccs.neu.edu/home/alina/">Alina Oprea</a>, and
+	Jonathan Ullman (contribution order)<br/>
+	Privacy Enhancing Technologies Symposium <strong>(PETS '24)</strong><br/>
+	<br/>
+
+	<strong>Chameleon: Increasing Label-Only Membership Leakage with Adaptive Poisoning</strong>
+	<a href="https://arxiv.org/abs/2310.03838"><span id="label-preprint">arXiv</span></a> <a href="https://github.com/harshch1803/CHAMELEON"><span id="label-code">GitHub</span></a> <a href="https://iclr.cc/virtual/2024/poster/19475"><span id="label-talk">Video</span></a><br/>
+	<a href="https://harshch1803.github.io/">Harsh Chaudhuri</a>,	
+	<a href="https://severi.xyz/">Giorgio Severi</a>, 
+	<a href="https://www.ccs.neu.edu/home/alina/">Alina Oprea</a>, and
+	Jonathan Ullman (contribution order)<br/>
+	International Conference on Learning Representations <strong>(ICLR '24)</strong><br/>
+	<br/>
+
+	<strong>Synthesizing Tight Privacy and Accuracy Bounds via Weighted Model Counting</strong>
+	<a href="https://arxiv.org/abs/2402.16982"><span id="label-preprint">arXiv</span></a><br/>
+	<a href="https://harshch1803.github.io/">Lisa Oakley</a>,	
+	<a href="https://severi.xyz/">Steven Holtzen</a>, and
+	<a href="https://www.ccs.neu.edu/home/alina/">Alina Oprea</a><br/>
+	IEEE Computer Security Foundations Symposium <strong>(CSF '24)</strong><br/>
+
+  </body>
+
+
+</html>
