@@ -428,9 +428,12 @@ table ol {
   left: 0;
   z-index: 2;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  gap: 12px;
   align-items: center;
   height: 48px;
+  padding: 0 max(24px, calc((100% - 1020px) / 2));
+  box-sizing: border-box;
 }
 
 .nav a {
@@ -507,6 +510,8 @@ table ol {
   color: var(--link);
   font-size: 140%;
   font-weight: bold;
+  margin-right: auto;
+  white-space: nowrap;
 }
 
 .label {
