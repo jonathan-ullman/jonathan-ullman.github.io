@@ -23,7 +23,7 @@
     <div id="content">
       <header class="course-header">
         <h1>Course Schedule</h1>
-        <br>This page will be updated regularly.  Check back often for updates.
+        <br>This page will be updated regularly.  Check back often.
       </header>
 
       <div class="table-wrap">
@@ -36,12 +36,28 @@
             </tr>
           </thead>
           <tbody>
+            <!--
+              Keep future meeting entries in this format:
+              1. Topic or speaker
+              2. Announcement/action link, if any, followed by <br><br>
+              3. Materials: linked notes and/or slides, followed by <br>
+              4. Interesting Reading: a <ul> of linked, fully cited readings
+
+              Schedule <ul> elements have zero vertical margin in course.css.
+            -->
             <tr>
               <td>1</td>
               <td>F 09/11</td>
               <td>
-                Course Overview + Intro to Calibration<br>
-                <a class="accent-link" href="https://docs.google.com/forms/d/e/1FAIpQLScMjQjtRpYZF94eDbOS845W7HLmTUztF3xFeqjAEOaRiQNr-g/viewform?usp=header">Please fill out this short Google Form</a>
+                <a href="slides/course-overview.pdf">Course Overview</a> + Intro to Calibration<br>
+                <a class="accent-link" href="https://docs.google.com/forms/d/e/1FAIpQLScMjQjtRpYZF94eDbOS845W7HLmTUztF3xFeqjAEOaRiQNr-g/viewform?usp=header">Please fill out this short Google Form</a><br><br>
+                Materials: <a href="notes/01-calibration-notes.pdf">notes</a>, slides<br>
+                Interesting Reading:
+                <ul>
+                  <li><a href="https://www.cis.upenn.edu/~aaroth/uncertainty-notes.pdf">Aaron Roth, <em>Uncertain: Modern Topics in Uncertainty Estimation</em></a></li>
+                  <li><a href="https://deanfoster.net/research/calibration.pdf">Dean P. Foster and Rakesh V. Vohra, <em>Asymptotic Calibration</em> (1998)</a></li>
+                  <li><a href="https://arxiv.org/abs/2209.05863">Sergiu Hart, <em>Calibrated Forecasts: The Minimax Proof</em></a></li>
+                </ul>
               </td>
             </tr>
             <tr>

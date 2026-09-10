@@ -95,6 +95,10 @@
   background: #fafafa;
 }
 
+.schedule ul {
+  margin-block: 0;
+}
+
 #contentpane .accent-link,
 #contentpane .accent-link:visited {
   color: var(--accent);
