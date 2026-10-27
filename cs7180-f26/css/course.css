@@ -86,6 +86,10 @@
   font-weight: 700;
 }
 
+.schedule th {
+  border-bottom: 0;
+}
+
 .milestones th:last-child,
 .milestones td:last-child {
   width: 12rem;
