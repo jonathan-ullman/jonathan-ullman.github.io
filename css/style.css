@@ -212,7 +212,7 @@ h6 {
   font-weight: 700;
 }
 
-.announcement-link {
+.announcement .announcement-link {
   padding: 0;
   border: 0;
   background: none;
